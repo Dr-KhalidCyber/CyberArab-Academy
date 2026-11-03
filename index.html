@@ -154,14 +154,62 @@ nav a:hover {
     <button onclick="checkAnswer(false)">تسريع الإنترنت</button>
     <button onclick="checkAnswer(true)">فلترة حركة الشبكة</button>
     <p id="result" aria-live="polite"></p>
+    
+<section id="lesson" hidden
+  style="background:#24344b; padding:30px;
+  border-radius:15px; margin:30px auto;
+  max-width:800px; text-align:right;">
+
+  <h2>🌐 الدرس الأول: ما هي الشبكات؟</h2>
+
+  <p>
+    الشبكة هي مجموعة أجهزة متصلة ببعضها
+    لتبادل البيانات والموارد.
+  </p>
+
+  <h3>مثال عملي</h3>
+  <p>
+    عندما يتصل هاتفك وجهاز الكمبيوتر
+    بنفس شبكة Wi-Fi، يصبحان جزءاً
+    من شبكة محلية LAN.
+  </p>
+
+  <h3>🧠 اختبار سريع</h3>
+  <p>ما وظيفة عنوان IP؟</p>
+
+  <button onclick="checkLessonAnswer(false)">
+    تشفير الملفات
+  </button>
+
+  <button onclick="checkLessonAnswer(true)">
+    تحديد عنوان الجهاز على الشبكة
+  </button>
+
+  <button onclick="checkLessonAnswer(false)">
+    زيادة سرعة المعالج
+  </button>
+
+  <p id="lesson-result" aria-live="polite"></p>
+
+</section>
+
   </main>
 
   <footer>© 2026 CyberArab Academy</footer>
 
   <script>
-    function showCourse(name) {
-      alert("قريبًا سنضيف دروس دورة " + name);
-    }
+  
+function showCourse(name) {
+  if (name === "الشبكات") {
+    document.getElementById("lesson").hidden = false;
+    document.getElementById("lesson").scrollIntoView({
+      behavior: "smooth"
+    });
+  } else {
+    alert("قريباً سنضيف دروس دورة " + name);
+  }
+}
+
 
     function checkAnswer(correct) {
       const result = document.getElementById("result");
@@ -169,6 +217,19 @@ nav a:hover {
         ? "✅ إجابة صحيحة! جدار الحماية يفلتر حركة الشبكة."
         : "❌ حاول مرة أخرى.";
     }
+    
+function checkLessonAnswer(correct) {
+  const result = document.getElementById("lesson-result");
+
+  if (correct) {
+    result.textContent = "✅ ممتاز! إجابة صحيحة.";
+    result.style.color = "#4ade80";
+  } else {
+    result.textContent = "❌ حاول مرة أخرى.";
+    result.style.color = "#f87171";
+  }
+}
+
   </script>
 </body>
 </html>
