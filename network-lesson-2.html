@@ -51,4 +51,14 @@ const questions=[
 const container=document.getElementById('questions');questions.forEach((q,i)=>{const el=document.createElement('div');el.className='q';el.id='q'+i;const title=document.createElement('strong');title.textContent=(i+1)+'. '+q[0];el.appendChild(title);q[1].forEach((option,j)=>{const label=document.createElement('label');const input=document.createElement('input');input.type='radio';input.name='question'+i;input.value=j;label.append(input,document.createTextNode(option));el.appendChild(label)});const feedback=document.createElement('div');feedback.className='feedback';el.appendChild(feedback);container.appendChild(el)});
 document.getElementById('grade').addEventListener('click',()=>{let score=0,answered=0;questions.forEach((q,i)=>{const el=document.getElementById('q'+i),selected=el.querySelector('input:checked'),feedback=el.querySelector('.feedback');el.classList.remove('correct','incorrect');if(selected)answered++;const right=selected&&Number(selected.value)===q[2];if(right)score++;el.classList.add(right?'correct':'incorrect');feedback.style.display='block';feedback.textContent=(right?'✓ إجابة صحيحة. ':'✗ '+(selected?'الإجابة الصحيحة: ':'لم تجب. الإجابة الصحيحة: ')+q[1][q[2]]+'. ')+q[3]});const result=document.getElementById('result');result.textContent='النتيجة: '+score+' / '+questions.length+' ('+Math.round(score/questions.length*100)+'%) — أجبت عن '+answered+' سؤالًا.';result.scrollIntoView({behavior:'smooth',block:'center'})});document.getElementById('reset').addEventListener('click',()=>{document.querySelectorAll('input[type=radio]').forEach(el=>el.checked=false);document.querySelectorAll('.q').forEach(el=>{el.classList.remove('correct','incorrect');el.querySelector('.feedback').style.display='none'});document.getElementById('result').textContent='';document.getElementById('quiz').scrollIntoView({behavior:'smooth'})});
 </script>
+
+<div style="text-align:center; margin:35px auto; padding:20px;">
+  <a href="network-lesson-3.html"
+     style="display:inline-block; background:#e9b96e;
+            color:#101827; padding:15px 30px;
+            border-radius:10px; text-decoration:none;
+            font-weight:bold;">
+    الدرس التالي: نظام DNS ←
+  </a>
+</div>
 </body></html>
