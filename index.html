@@ -78,6 +78,25 @@ nav a:hover {
     button:hover { background: #b13b61; }
     #result { margin-top: 20px; }
     footer { padding: 30px; color: #aaa; }
+    
+.start-btn {
+  display: inline-block;
+  margin: 25px 0 35px;
+  padding: 15px 35px;
+  background: #e9b96e;
+  color: #101827;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  background: #ffd28a;
+  transform: translateY(-3px);
+}
+
   </style>
 </head>
 <body>
@@ -102,9 +121,15 @@ nav a:hover {
   <main>
     <h1>ابدأ رحلتك في الأمن السيبراني</h1>
     <p>دروس عربية، اختبارات تفاعلية، وتطبيقات عملية.</p>
+    
+<a href="#courses" class="start-btn">
+  ابدأ التعلم مجانًا 🚀
+</a>
+
 
     <h2>الدورات التعليمية</h2>
-    <section class="courses">
+
+<section id="courses" class="courses">
       <div class="course">
         <h3>🌐 أساسيات الشبكات</h3>
         <p>تعلم IP و DNS وبروتوكولات الشبكات.</p>
