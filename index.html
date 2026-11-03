@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>أكاديمية سايبر عرب</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #101827;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background: #19263a;
+      padding: 22px;
+      color: #ffffff;
+    }
+    h1 { color: #e9b96e; }
+    main { padding: 35px 16px; }
+    .courses {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .course {
+      background: #24344a;
+      border-radius: 12px;
+      padding: 25px;
+      width: 230px;
+    }
+    button {
+      background: #8b2948;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 22px;
+      cursor: pointer;
+    }
+    button:hover { background: #b13b61; }
+    #result { margin-top: 20px; }
+    footer { padding: 30px; color: #aaa; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>🛡️ CyberArab Academy</h2>
+    <p>تعلم الأمن السيبراني باللغة العربية</p>
+  </header>
+
+  <main>
+    <h1>ابدأ رحلتك في الأمن السيبراني</h1>
+    <p>دروس عربية، اختبارات تفاعلية، وتطبيقات عملية.</p>
+
+    <h2>الدورات التعليمية</h2>
+    <section class="courses">
+      <div class="course">
+        <h3>🌐 أساسيات الشبكات</h3>
+        <p>تعلم IP و DNS وبروتوكولات الشبكات.</p>
+        <button onclick="showCourse('الشبكات')">استكشف الدورة</button>
+      </div>
+
+      <div class="course">
+        <h3>🔐 الأمن السيبراني</h3>
+        <p>تعرف على التهديدات وطرق الحماية.</p>
+        <button onclick="showCourse('الأمن السيبراني')">استكشف الدورة</button>
+      </div>
+
+      <div class="course">
+        <h3>🐍 Python</h3>
+        <p>تعلم البرمجة لبناء أدوات أمنية.</p>
+        <button onclick="showCourse('Python')">استكشف الدورة</button>
+      </div>
+    </section>
+
+    <h2>اختبر معلوماتك</h2>
+    <p>ما وظيفة جدار الحماية Firewall؟</p>
+    <button onclick="checkAnswer(false)">تسريع الإنترنت</button>
+    <button onclick="checkAnswer(true)">فلترة حركة الشبكة</button>
+    <p id="result" aria-live="polite"></p>
+  </main>
+
+  <footer>© 2026 CyberArab Academy</footer>
+
+  <script>
+    function showCourse(name) {
+      alert("قريبًا سنضيف دروس دورة " + name);
+    }
+
+    function checkAnswer(correct) {
+      const result = document.getElementById("result");
+      result.textContent = correct
+        ? "✅ إجابة صحيحة! جدار الحماية يفلتر حركة الشبكة."
+        : "❌ حاول مرة أخرى.";
+    }
+  </script>
+</body>
+</html>
