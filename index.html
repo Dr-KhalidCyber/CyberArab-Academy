@@ -147,6 +147,9 @@ nav a:hover {
         <p>تعلم البرمجة لبناء أدوات أمنية.</p>
         <button onclick="showCourse('Python')">استكشف الدورة</button>
       </div>
+  
+
+
     </section>
 
     <h2>اختبر معلوماتك</h2>
@@ -190,8 +193,46 @@ nav a:hover {
   </button>
 
   <p id="lesson-result" aria-live="polite"></p>
+  
+<button type="button" onclick="showNextLesson()" style="background:#e9b96e;color:#101827;font-size:18px;margin-top:20px;padding:14px 25px;border-radius:10px;">
+  الدرس التالي: عنوان IP ←
+</button>
+
 
 </section>
+    
+<section id="lesson2" hidden
+  style="background:#24344b;padding:30px;
+  border-radius:15px;margin:30px auto;
+  max-width:800px;text-align:right;">
+
+  <h2>🌐 الدرس الثاني: ما هو عنوان IP؟</h2>
+
+  <p>
+    عنوان IP هو عنوان رقمي يُستخدم
+    للتعرف على الأجهزة والتواصل معها عبر الشبكة.
+  </p>
+
+  <h3>مثال عملي</h3>
+  <p>
+    192.168.1.10
+    مثال على عنوان IPv4 خاص يُستخدم داخل الشبكات المحلية.
+  </p>
+
+  <h3>🧠 اختبار سريع</h3>
+  <p>ما وظيفة عنوان IP؟</p>
+
+  <button onclick="checkIPAnswer(true)">
+    تحديد عنوان الجهاز على الشبكة
+  </button>
+
+  <button onclick="checkIPAnswer(false)">
+    زيادة سرعة الإنترنت
+  </button>
+
+  <p id="ip-result" aria-live="polite"></p>
+</section>
+
 
   </main>
 
@@ -220,6 +261,31 @@ function showCourse(name) {
     
 function checkLessonAnswer(correct) {
   const result = document.getElementById("lesson-result");
+
+  if (correct) {
+    result.textContent = "✅ ممتاز! إجابة صحيحة.";
+    result.style.color = "#4ade80";
+  } else {
+    result.textContent = "❌ حاول مرة أخرى.";
+    result.style.color = "#f87171";
+  }
+}
+
+    
+function showNextLesson() {
+  const lesson2 = document.getElementById("lesson2");
+
+  if (lesson2) {
+    lesson2.hidden = false;
+    lesson2.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+function checkIPAnswer(correct) {
+  const result = document.getElementById("ip-result");
 
   if (correct) {
     result.textContent = "✅ ممتاز! إجابة صحيحة.";
