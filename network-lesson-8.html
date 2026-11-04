@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="الدرس الثامن: Switching و VLAN في أكاديمية سايبر عرب">
+<title>الدرس الثامن | Switching & VLAN | CyberArab Academy</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071323;color:#eef8ff;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+a{color:#6bdaff}
+header{max-width:1250px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+header img{width:145px;height:auto}
+header a{text-decoration:none;font-weight:bold}
+main{max-width:1100px;margin:25px auto;padding:0 20px}
+.hero,.section,.quiz,.nav-box{background:linear-gradient(140deg,#0e2944,#071a2e);border:1px solid #295d86;border-radius:18px;padding:27px;margin-bottom:22px}
+.hero{background:linear-gradient(120deg,#123b59,#071323)}
+.tag{display:inline-block;color:#6bdaff;background:#0b2942;padding:5px 14px;border-radius:25px;font-size:13px}
+h1{font-size:clamp(28px,4vw,43px);line-height:1.5;margin:12px 0}
+h2{color:#75d9ff;font-size:23px;margin:0 0 15px}
+h3{color:#c3eaff}
+p,li{color:#d1e1ef}
+strong{color:#fff}
+ul,ol{padding-right:25px}
+.example{background:#081c30;border-right:4px solid #17d6ff;padding:16px;border-radius:9px;margin:15px 0}
+.warning{background:#302318;border-right:4px solid #ffbd69;padding:15px;border-radius:9px;margin:15px 0}
+pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;background:#06111e;border:1px solid #2c536e;padding:18px;border-radius:10px;color:#b9f2ff;font-size:14px;line-height:1.7}
+code{direction:ltr;unicode-bidi:isolate;color:#91e8ff}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:14px}
+th,td{border:1px solid #315775;padding:12px;text-align:right}
+th{background:#123d5d}
+.table-wrap{overflow-x:auto}
+.question{background:#0b2035;border:1px solid #315775;padding:18px;border-radius:13px;margin:16px 0}
+.question h3{font-size:17px;margin:0 0 12px}
+.question label{display:block;padding:10px;margin:7px 0;border:1px solid #315775;border-radius:9px;cursor:pointer}
+.question label:hover{background:#16405f}
+.question input{margin-left:9px;accent-color:#17c9ff}
+button,.btn{background:linear-gradient(120deg,#087ac5,#03b9fa);border:0;color:white;font-weight:bold;border-radius:10px;padding:13px 24px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block;margin:5px}
+button:hover,.btn:hover{filter:brightness(1.12)}
+#result{margin-top:18px;padding:18px;border-radius:12px;background:#0b2035;display:none}
+#result.success{border:1px solid #32ca9c}
+#result.failure{border:1px solid #ffbd69}
+.nav-box{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+footer{text-align:center;color:#a4bfd4;padding:25px}
+@media(max-width:650px){.section,.quiz,.hero{padding:19px}table{font-size:12px}}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html"><img src="drk-logo.webp" alt="شعار أكاديمية سايبر عرب"></a>
+<a href="network-course.html">← مسار أساسيات الشبكات</a>
+</header>
+
+<main>
+
+<section class="hero">
+<span class="tag">مسار أساسيات الشبكات · الدرس 8 من 10</span>
+<h1>🔀 المحوّلات والشبكات الافتراضية</h1>
+<p>Switching & VLAN: كيف تتواصل الأجهزة داخل الشبكة المحلية؟ وكيف نقسّم شبكة واحدة إلى شبكات منطقية منفصلة؟</p>
+<p><strong>المستوى:</strong> مبتدئ إلى متوسط · <strong>الاختبار:</strong> 10 أسئلة · <strong>النجاح:</strong> 80%</p>
+</section>
+
+<section class="section">
+<h2>1. ما هو Switch؟</h2>
+<p>المحوّل Switch جهاز شبكي يربط عدة أجهزة داخل شبكة محلية LAN. يتعلم المحوّل عناوين MAC المرتبطة بمنافذه، ويستخدمها لاتخاذ قرارات تمرير إطارات Ethernet.</p>
+<p>بدل إرسال كل إطار إلى جميع المنافذ دائمًا، يستطيع المحوّل توجيه الإطار إلى المنفذ المرتبط بعنوان MAC الوجهة عندما يكون هذا العنوان معروفًا.</p>
+<div class="example">
+<strong>مثال:</strong> في مكتب يحتوي على 12 حاسوبًا، يمكن توصيل الأجهزة بمحوّل لتبادل البيانات داخل الشبكة المحلية.
+</div>
+</section>
+
+<section class="section">
+<h2>2. ما هو MAC Address؟</h2>
+<p>عنوان MAC هو معرّف تستخدمه واجهة الشبكة في الاتصال على طبقة ربط البيانات Data Link. غالبًا يُعرض عنوان Ethernet على شكل ست مجموعات من القيم السداسية عشرية.</p>
+<pre>00:1A:2B:3C:4D:5E</pre>
+<p>يستخدم المحوّل عناوين MAC لتحديد المنفذ الذي يجب أن يرسل إليه الإطار داخل الشبكة المحلية.</p>
+<div class="warning">عنوان MAC ليس وسيلة موثوقة وحده للتحقق من هوية المستخدم؛ فمن الممكن تغييره أو انتحال عنوان آخر.</div>
+</section>
+
+<section class="section">
+<h2>3. كيف يتعلم Switch عناوين MAC؟</h2>
+<ol>
+<li>يستقبل المحوّل إطار Ethernet على أحد المنافذ.</li>
+<li>يقرأ عنوان MAC المصدر Source MAC.</li>
+<li>يسجل ارتباط عنوان المصدر بمنفذ الاستقبال في جدول MAC.</li>
+<li>يبحث عن عنوان MAC الوجهة Destination MAC.</li>
+<li>إذا كان عنوان الوجهة معروفًا، يرسل الإطار إلى المنفذ المناسب.</li>
+<li>إذا كان عنوان الوجهة غير معروف، قد يرسل الإطار إلى المنافذ الأخرى ضمن VLAN نفسها، باستثناء منفذ الاستقبال.</li>
+</ol>
+<div class="example">
+<strong>مثال جدول MAC:</strong>
+<div class="table-wrap">
+<table>
+<tr><th>MAC Address</th><th>Port</th><th>VLAN</th></tr>
+<tr><td>00:AA:11:22:33:44</td><td>Fa0/1</td><td>10</td></tr>
+<tr><td>00:BB:11:22:33:55</td><td>Fa0/2</td><td>10</td></tr>
+<tr><td>00:CC:11:22:33:66</td><td>Fa0/3</td><td>20</td></tr>
+</table>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>4. الفرق بين Hub وSwitch وRouter</h2>
+<div class="table-wrap">
+<table>
+<tr><th>الجهاز</th><th>الوظيفة الأساسية</th><th>المعلومات المستخدمة</th></tr>
+<tr><td>Hub</td><td>تكرار الإشارات إلى المنافذ الأخرى</td><td>لا يتخذ قرارات بناءً على MAC أو IP</td></tr>
+<tr><td>Switch</td><td>تمرير إطارات Ethernet داخل الشبكة المحلية</td><td>MAC Address</td></tr>
+<tr><td>Router</td><td>توجيه الحزم بين الشبكات</td><td>IP Address</td></tr>
+</table>
+</div>
+<p>توجد محوّلات Layer 3 يمكنها تنفيذ التوجيه أيضًا، لكن هذا الجدول يوضح الاستخدام التقليدي لكل جهاز.</p>
+</section>
+
+<section class="section">
+<h2>5. ما هي VLAN؟</h2>
+<p>اختصار VLAN يعني Virtual Local Area Network، وهي شبكة محلية افتراضية تُستخدم لتقسيم شبكة المحوّلات إلى مجموعات منطقية منفصلة.</p>
+<p>كل VLAN تمثل عادة نطاق بث Broadcast Domain مستقلًا.</p>
+<div class="example">
+<strong>مثال في شركة:</strong>
+<pre>VLAN 10 = Employees
+VLAN 20 = Finance
+VLAN 30 = Guests</pre>
+<p>يمكن توصيل أجهزة الأقسام الثلاثة بالمحوّل نفسه، مع فصل حركة البث بينها منطقيًا.</p>
+</div>
+<p>تساعد VLAN على تنظيم الشبكة وتقليل نطاق البث، لكنها لا تغني عن سياسات التحكم في الوصول أو الجدران النارية.</p>
+</section>
+
+<section class="section">
+<h2>6. ما الفرق بين Access Port وTrunk Port؟</h2>
+<p><strong>Access Port:</strong> منفذ يُخصص عادة لربط جهاز نهائي ضمن VLAN واحدة.</p>
+<p><strong>Trunk Port:</strong> منفذ يستطيع نقل حركة مرور عدة شبكات VLAN عبر وصلة واحدة، باستخدام آلية وسم مثل IEEE 802.1Q.</p>
+<div class="example">
+<pre>PC1 ---- Access VLAN 10 ---- Switch A
+                                |
+                             Trunk
+                                |
+                              Switch B
+                                |
+PC2 ---- Access VLAN 10 --------+</pre>
+<p>يسمح رابط Trunk بنقل حركة VLAN 10 بين المحوّلين إذا كانت VLAN مسموحة ومهيأة بصورة صحيحة على الرابط.</p>
+</div>
+</section>
+
+<section class="section">
+<h2>7. ما هو IEEE 802.1Q؟</h2>
+<p>IEEE 802.1Q معيار يستخدم وسم VLAN داخل إطارات Ethernet لتمييز الشبكة الافتراضية التي ينتمي إليها الإطار.</p>
+<p>في الوصلات Trunk، تحمل الإطارات الخاصة بكثير من شبكات VLAN وسمًا يحدد VLAN ID.</p>
+<p>قد تُنقل إطارات Native VLAN دون وسم في إعدادات معينة، ولذلك يجب ضبط الطرفين بصورة متوافقة وتجنب الإعدادات غير الآمنة.</p>
+</section>
+
+<section class="section">
+<h2>8. هل يمكن لجهازين في VLAN مختلفة التواصل؟</h2>
+<p>ليس مباشرة عبر التحويل التقليدي في الطبقة الثانية. يتطلب الاتصال بين شبكتين VLAN مختلفتين عملية توجيه تسمى <strong>Inter-VLAN Routing</strong>.</p>
+<p>يمكن تنفيذ ذلك باستخدام Router أو محوّل Layer 3.</p>
+<div class="example">
+<pre>PC-A: 192.168.10.10/24
+VLAN 10
+
+PC-B: 192.168.20.10/24
+VLAN 20
+
+Inter-VLAN Routing
+       |
+Router or Layer 3 Switch</pre>
+<p>بعد تهيئة بوابات الشبكات والتوجيه، يمكن للجهازين التواصل إذا سمحت سياسات الوصول بذلك.</p>
+</div>
+</section>
+
+<section class="section">
+<h2>9. مثال عملي على إعداد VLAN في Cisco IOS</h2>
+<p>الأوامر التالية نموذج تعليمي على محوّل Cisco متوافق، وقد تختلف أسماء الواجهات بحسب الطراز.</p>
+<h3>إنشاء VLAN</h3>
+<pre>enable
+configure terminal
+vlan 10
+name EMPLOYEES
+exit
+
+vlan 20
+name FINANCE
+exit</pre>
+<h3>ربط منفذ بـ VLAN 10</h3>
+<pre>interface fastEthernet 0/1
+switchport mode access
+switchport access vlan 10
+exit</pre>
+<h3>تهيئة منفذ Trunk</h3>
+<pre>interface gigabitEthernet 0/1
+switchport mode trunk
+switchport trunk allowed vlan 10,20
+exit</pre>
+<h3>التحقق من الإعدادات</h3>
+<pre>show vlan brief
+show interfaces trunk
+show mac address-table</pre>
+<div class="warning">طبّق هذه الأوامر داخل مختبر افتراضي أو على أجهزة تملك صلاحية إدارتها. لا تغيّر إعدادات محوّلات شبكة إنتاجية دون موافقة وخطة تغيير.</div>
+</section>
+
+<section class="section">
+<h2>10. تطبيق عملي باستخدام Cisco Packet Tracer</h2>
+<p>يمكنك تنفيذ التمرين في برنامج Cisco Packet Tracer باستخدام محوّل وأربعة أجهزة حاسوب.</p>
+<ol>
+<li>أضف Switch وأربعة أجهزة PC.</li>
+<li>صل الأجهزة بالمنافذ Fa0/1 إلى Fa0/4.</li>
+<li>أنشئ VLAN 10 وVLAN 20.</li>
+<li>ضع PC1 وPC2 في VLAN 10، وPC3 وPC4 في VLAN 20.</li>
+<li>اضبط عناوين IP مناسبة لكل VLAN.</li>
+<li>اختبر Ping بين جهازين في VLAN نفسها.</li>
+<li>اختبر Ping بين جهازين في VLAN مختلفتين دون تهيئة Inter-VLAN Routing.</li>
+<li>لاحظ النتيجة وفسّر سبب اختلاف الاتصال.</li>
+</ol>
+<div class="example">
+<strong>عناوين مقترحة:</strong>
+<pre>PC1: 192.168.10.11/24
+PC2: 192.168.10.12/24
+
+PC3: 192.168.20.11/24
+PC4: 192.168.20.12/24</pre>
+<p>في هذا المختبر البسيط، يفترض أن ينجح الاتصال بين أجهزة VLAN نفسها بعد الإعداد الصحيح، بينما لا ينجح الاتصال بين VLAN 10 وVLAN 20 دون تهيئة التوجيه بينهما.</p>
+</div>
+</section>
+
+<section class="quiz">
+<h2>📝 اختبار الدرس الثامن</h2>
+<p>أجب عن جميع الأسئلة. درجة النجاح 8 من 10، ويمكنك إعادة الاختبار لتحسين نتيجتك.</p>
+
+<form id="quiz-form">
+
+<div class="question">
+<h3>1. ما الوظيفة الأساسية للمحوّل Switch التقليدي؟</h3>
+<label><input type="radio" name="q1" value="a"> ترجمة أسماء النطاقات</label>
+<label><input type="radio" name="q1" value="b"> تمرير إطارات Ethernet بين الأجهزة</label>
+<label><input type="radio" name="q1" value="c"> تخزين الملفات</label>
+<label><input type="radio" name="q1" value="d"> تشغيل نظام التشغيل</label>
+</div>
+
+<div class="question">
+<h3>2. أي عنوان يستخدمه Switch عادة لاتخاذ قرار تمرير الإطار؟</h3>
+<label><input type="radio" name="q2" value="a"> عنوان MAC</label>
+<label><input type="radio" name="q2" value="b"> عنوان URL</label>
+<label><input type="radio" name="q2" value="c"> اسم المستخدم</label>
+<label><input type="radio" name="q2" value="d"> رقم الملف</label>
+</div>
+
+<div class="question">
+<h3>3. من أي حقل يتعلم Switch ارتباط عنوان MAC بمنفذ الاستقبال؟</h3>
+<label><input type="radio" name="q3" value="a"> عنوان IP الوجهة</label>
+<label><input type="radio" name="q3" value="b"> رقم منفذ TCP</label>
+<label><input type="radio" name="q3" value="c"> Source MAC</label>
+<label><input type="radio" name="q3" value="d"> اسم الموقع</label>
+</div>
+
+<div class="question">
+<h3>4. ما المعنى الصحيح لاختصار VLAN؟</h3>
+<label><input type="radio" name="q4" value="a"> Verified Link Access Node</label>
+<label><input type="radio" name="q4" value="b"> Virtual Local Area Network</label>
+<label><input type="radio" name="q4" value="c"> Variable Local Address Number</label>
+<label><input type="radio" name="q4" value="d"> Virtual Login Access Network</label>
+</div>
+
+<div class="question">
+<h3>5. ما الفائدة الأساسية من استخدام VLAN؟</h3>
+<label><input type="radio" name="q5" value="a"> زيادة سرعة المعالج</label>
+<label><input type="radio" name="q5" value="b"> إلغاء عناوين IP</label>
+<label><input type="radio" name="q5" value="c"> حذف جميع التهديدات الأمنية</label>
+<label><input type="radio" name="q5" value="d"> تقسيم الشبكة إلى مجموعات منطقية</label>
+</div>
+
+<div class="question">
+<h3>6. ما وظيفة منفذ Trunk؟</h3>
+<label><input type="radio" name="q6" value="a"> نقل حركة مرور عدة VLAN</label>
+<label><input type="radio" name="q6" value="b"> تشغيل الشاشة</label>
+<label><input type="radio" name="q6" value="c"> حذف جدول MAC</label>
+<label><input type="radio" name="q6" value="d"> تحويل DNS إلى DHCP</label>
+</div>
+
+<div class="question">
+<h3>7. أي معيار يرتبط بوسم VLAN في Ethernet؟</h3>
+<label><input type="radio" name="q7" value="a"> IEEE 802.11ax فقط</label>
+<label><input type="radio" name="q7" value="b"> HTTP/2</label>
+<label><input type="radio" name="q7" value="c"> IEEE 802.1Q</label>
+<label><input type="radio" name="q7" value="d"> SMTP</label>
+</div>
+
+<div class="question">
+<h3>8. ماذا تحتاج عادة لتوصيل VLAN 10 مع VLAN 20؟</h3>
+<label><input type="radio" name="q8" value="a"> Hub فقط</label>
+<label><input type="radio" name="q8" value="b"> Inter-VLAN Routing</label>
+<label><input type="radio" name="q8" value="c"> تغيير اسم الحاسوب</label>
+<label><input type="radio" name="q8" value="d"> إيقاف Ethernet</label>
+</div>
+
+<div class="question">
+<h3>9. أي أمر في Cisco IOS يعرض معلومات VLAN الأساسية؟</h3>
+<label><input type="radio" name="q9" value="a"> show vlan brief</label>
+<label><input type="radio" name="q9" value="b"> ipconfig /flushdns</label>
+<label><input type="radio" name="q9" value="c"> format c:</label>
+<label><input type="radio" name="q9" value="d"> shutdown computer</label>
+</div>
+
+<div class="question">
+<h3>10. إذا لم يعرف Switch عنوان MAC الوجهة لإطار Unicast، فما التصرف المعتاد؟</h3>
+<label><input type="radio" name="q10" value="a"> يرسل الإطار مباشرة إلى الإنترنت</label>
+<label><input type="radio" name="q10" value="b"> يحوّل الإطار إلى DNS</label>
+<label><input type="radio" name="q10" value="c"> يوقف جميع المنافذ نهائيًا</label>
+<label><input type="radio" name="q10" value="d"> يرسل الإطار إلى المنافذ الأخرى ضمن VLAN نفسها</label>
+</div>
+
+<button type="button" id="grade">تصحيح الاختبار</button>
+<button type="reset" id="retry">إعادة المحاولة</button>
+
+</form>
+
+<div id="result" aria-live="polite"></div>
+</section>
+
+<section class="nav-box">
+<a class="btn" href="network-lesson-7.html">→ الدرس السابق</a>
+<a class="btn" href="network-course.html">العودة لمسار الشبكات</a>
+<span>الدرس التاسع: قريبًا 🔒</span>
+</section>
+
+</main>
+
+<footer>© 2026 Dr.K | CyberArab Academy · جميع الحقوق محفوظة</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  const answers = ["b","a","c","b","d","a","c","b","a","d"];
+  const key = "cyberarab_lesson8_score";
+
+  const form = document.getElementById("quiz-form");
+  const result = document.getElementById("result");
+  const gradeButton = document.getElementById("grade");
+  const retryButton = document.getElementById("retry");
+  const main = document.querySelector("main");
+
+  function getSavedScore() {
+    const raw = localStorage.getItem(key);
+    const score = raw === null ? 0 : Number(raw);
+    return Number.isFinite(score) ? score : 0;
+  }
+
+  function checkAccess() {
+    const previous = Number(
+      localStorage.getItem("cyberarab_lesson7_score") || 0
+    );
+
+    if (!Number.isFinite(previous) || previous < 16) {
+      main.innerHTML = `
+        <section class="hero" style="text-align:center">
+          <h1>🔒 الدرس الثامن مقفل</h1>
+          <p>يجب اجتياز اختبار الدرس السابع بنسبة 80% على الأقل قبل الانتقال إلى الدرس الثامن.</p>
+          <a class="btn" href="network-lesson-7.html">الانتقال إلى الدرس السابع</a>
+          <a class="btn" href="network-course.html">العودة إلى المسار</a>
+        </section>
+      `;
+      return false;
+    }
+
+    return true;
+  }
+
+  if (!checkAccess()) return;
+
+  gradeButton.addEventListener("click", () => {
+    let correct = 0;
+    let answered = 0;
+
+    answers.forEach((answer, index) => {
+      const selected = form.querySelector(
+        `input[name="q${index + 1}"]:checked`
+      );
+
+      if (selected) {
+        answered++;
+        if (selected.value === answer) correct++;
+      }
+    });
+
+    if (answered !== answers.length) {
+      alert("الرجاء الإجابة عن جميع الأسئلة قبل التصحيح.");
+      return;
+    }
+
+    const passed = correct >= 8;
+    const normalized = correct * 2;
+    const best = Math.max(getSavedScore(), normalized);
+
+    localStorage.setItem(key, String(best));
+
+    result.style.display = "block";
+    result.className = passed ? "success" : "failure";
+    result.textContent =
+      "النتيجة: " + correct + " / 10 — " +
+      (passed
+        ? "🎉 ممتاز! اجتزت الاختبار بنسبة " + (correct * 10) + "%."
+        : "تحتاج إلى 80% للنجاح. راجع الدرس ثم أعد المحاولة.");
+
+    result.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
+  retryButton.addEventListener("click", () => {
+    result.style.display = "none";
+    result.textContent = "";
+    result.className = "";
+  });
+})();
+</script>
+
+<script src="academy.js" defer></script>
+</body>
+</html>
