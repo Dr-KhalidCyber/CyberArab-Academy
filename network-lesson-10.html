@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="الدرس العاشر: استكشاف أخطاء الشبكات وإصلاحها - أكاديمية سايبر عرب">
+<title>الدرس العاشر | Network Troubleshooting | CyberArab Academy</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071323;color:#eef8ff;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+a{color:#6bdaff}
+header{max-width:1250px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+header img{width:145px;height:auto}
+header a{text-decoration:none;font-weight:bold}
+main{max-width:1100px;margin:25px auto;padding:0 20px}
+.hero,.section,.quiz,.nav-box{background:linear-gradient(140deg,#0e2944,#071a2e);border:1px solid #295d86;border-radius:18px;padding:27px;margin-bottom:22px}
+.hero{background:linear-gradient(120deg,#123b59,#071323)}
+.tag{display:inline-block;color:#6bdaff;background:#0b2942;padding:5px 14px;border-radius:25px;font-size:13px}
+h1{font-size:clamp(28px,4vw,43px);line-height:1.5;margin:12px 0}
+h2{color:#75d9ff;font-size:23px;margin:0 0 15px}
+h3{color:#c3eaff}
+p,li{color:#d1e1ef}
+strong{color:#fff}
+ul,ol{padding-right:25px}
+.example{background:#081c30;border-right:4px solid #17d6ff;padding:16px;border-radius:9px;margin:15px 0}
+.warning{background:#302318;border-right:4px solid #ffbd69;padding:15px;border-radius:9px;margin:15px 0}
+pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;background:#06111e;border:1px solid #2c536e;padding:18px;border-radius:10px;color:#b9f2ff;font-size:14px;line-height:1.7}
+code{direction:ltr;unicode-bidi:isolate;color:#91e8ff}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:14px}
+th,td{border:1px solid #315775;padding:12px;text-align:right}
+th{background:#123d5d}
+.table-wrap{overflow-x:auto}
+.question{background:#0b2035;border:1px solid #315775;padding:18px;border-radius:13px;margin:16px 0}
+.question h3{font-size:17px;margin:0 0 12px}
+.question label{display:block;padding:10px;margin:7px 0;border:1px solid #315775;border-radius:9px;cursor:pointer}
+.question label:hover{background:#16405f}
+.question input{margin-left:9px;accent-color:#17c9ff}
+button,.btn{background:linear-gradient(120deg,#087ac5,#03b9fa);border:0;color:white;font-weight:bold;border-radius:10px;padding:13px 24px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block;margin:5px}
+button:hover,.btn:hover{filter:brightness(1.12)}
+#result{margin-top:18px;padding:18px;border-radius:12px;background:#0b2035;display:none}
+#result.success{border:1px solid #32ca9c}
+#result.failure{border:1px solid #ffbd69}
+.nav-box{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+footer{text-align:center;color:#a4bfd4;padding:25px}
+@media(max-width:650px){.section,.quiz,.hero{padding:19px}table{font-size:12px}}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html"><img src="drk-logo.webp" alt="شعار أكاديمية سايبر عرب"></a>
+<a href="network-course.html">← مسار أساسيات الشبكات</a>
+</header>
+
+<main>
+
+<section class="hero">
+<span class="tag">مسار أساسيات الشبكات · الدرس 10 من 10</span>
+<h1>🔧 استكشاف أخطاء الشبكات وإصلاحها</h1>
+<p>Network Troubleshooting: تعلّم كيف تشخّص مشكلات الاتصال، وتحدد أسباب الأعطال باستخدام أدوات النظام، وتختار الحل المناسب بناءً على الأدلة.</p>
+<p><strong>المستوى:</strong> مبتدئ إلى متوسط · <strong>الاختبار:</strong> 10 أسئلة · <strong>النجاح:</strong> 80%</p>
+</section>
+
+<section class="section">
+<h2>1. ما المقصود بـ Network Troubleshooting؟</h2>
+<p>استكشاف أخطاء الشبكات هو عملية منهجية لتحديد أسباب مشكلات الاتصال والأداء، ثم اختبار الحلول والتحقق من عودة الخدمة للعمل بصورة صحيحة.</p>
+<p>من أمثلة المشكلات:</p>
+<ul>
+<li>الجهاز متصل بالشبكة لكنه لا يستطيع فتح المواقع.</li>
+<li>تعذّر الوصول إلى جهاز داخل الشبكة المحلية.</li>
+<li>بطء نقل البيانات أو انقطاع الاتصال بصورة متكررة.</li>
+<li>فشل الحصول على عنوان IP.</li>
+<li>تعذّر الوصول إلى خدمة محددة رغم عمل الإنترنت.</li>
+</ul>
+<div class="example">
+<strong>قاعدة مهمة:</strong> لا تبدأ بتغيير الإعدادات عشوائيًا. اجمع المعلومات أولًا، ثم اختبر فرضية واحدة في كل مرة.
+</div>
+</section>
+
+<section class="section">
+<h2>2. منهجية حل مشكلات الشبكات</h2>
+<ol>
+<li><strong>Identify:</strong> تحديد المشكلة والأجهزة المتأثرة ووقت بدايتها.</li>
+<li><strong>Establish a Theory:</strong> وضع فرضية لسبب العطل.</li>
+<li><strong>Test:</strong> اختبار الفرضية باستخدام أدوات مناسبة.</li>
+<li><strong>Plan:</strong> وضع خطة إصلاح وتقييم أثرها.</li>
+<li><strong>Implement:</strong> تنفيذ الحل المصرح به.</li>
+<li><strong>Verify:</strong> التأكد من عودة الخدمة وعدم ظهور آثار جانبية.</li>
+<li><strong>Document:</strong> توثيق المشكلة والسبب والحل.</li>
+</ol>
+<p>تساعد هذه المنهجية في تجنب إضاعة الوقت وتكرار الأخطاء.</p>
+</section>
+
+<section class="section">
+<h2>3. فحص الاتصال باستخدام Ping</h2>
+<p>تُستخدم أداة Ping لإرسال رسائل ICMP Echo Request والتحقق من وصول ردود Echo Reply، عندما تسمح الأجهزة والشبكات بهذه الرسائل.</p>
+<h3>مثال على Windows أو Linux</h3>
+<pre>ping 192.168.1.1</pre>
+<p>إذا وصل الرد، فهذا مؤشر على وجود اتصال IP بالوجهة، لكنه لا يضمن أن جميع التطبيقات والخدمات تعمل.</p>
+<div class="table-wrap">
+<table>
+<tr><th>النتيجة</th><th>تفسير محتمل</th></tr>
+<tr><td>Reply</td><td>استجابة من الوجهة</td></tr>
+<tr><td>Request timed out</td><td>لم يصل رد خلال المهلة</td></tr>
+<tr><td>Destination host unreachable</td><td>تعذر الوصول إلى الوجهة وفق معلومات الشبكة المتاحة</td></tr>
+</table>
+</div>
+<div class="warning">فشل Ping لا يعني بالضرورة أن الجهاز متوقف؛ فقد تكون رسائل ICMP محظورة.</div>
+</section>
+
+<section class="section">
+<h2>4. فحص إعدادات IP</h2>
+<p>يحتاج الجهاز عادة إلى عنوان IP وقناع شبكة، وقد يحتاج إلى بوابة افتراضية وخوادم DNS بحسب نوع الاتصال.</p>
+<h3>Windows</h3>
+<pre>ipconfig /all</pre>
+<h3>Linux</h3>
+<pre>ip addr
+ip route</pre>
+<div class="example">
+<strong>مثال:</strong>
+<pre>IP Address:      192.168.1.20
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.1.1
+DNS Server:      1.1.1.1</pre>
+<p>تحقق من أن عنوان IP والبوابة الافتراضية يتوافقان مع إعدادات الشبكة الفعلية.</p>
+</div>
+</section>
+
+<section class="section">
+<h2>5. مشكلة DHCP وعنوان APIPA</h2>
+<p>إذا كان جهاز Windows مضبوطًا للحصول على عنوان IPv4 تلقائيًا ولم يحصل على عنوان من DHCP، فقد يختار عنوانًا ذاتيًا ضمن النطاق 169.254.0.0/16 باستخدام APIPA.</p>
+<div class="example">
+<pre>IPv4 Address: 169.254.25.18
+Subnet Mask:  255.255.0.0</pre>
+<p>هذا قد يشير إلى تعذّر الحصول على عنوان من DHCP، لكنه ليس دليلًا قاطعًا على تعطل خادم DHCP نفسه.</p>
+</div>
+<p>افحص اتصال الجهاز بالشبكة، وإعدادات VLAN، وتوافر خادم DHCP، ثم جرّب تجديد العنوان عند الحاجة.</p>
+<h3>Windows</h3>
+<pre>ipconfig /release
+ipconfig /renew</pre>
+<div class="warning">قد تؤدي أوامر تجديد العنوان إلى قطع الاتصال مؤقتًا؛ لا تنفذها على جهاز تديره عن بُعد دون خطة مناسبة.</div>
+</section>
+
+<section class="section">
+<h2>6. تشخيص مشكلات DNS</h2>
+<p>DNS يحوّل أسماء النطاقات إلى عناوين IP. إذا كان الاتصال بعناوين IP يعمل لكن الوصول إلى المواقع بأسمائها يفشل، فقد توجد مشكلة في DNS.</p>
+<h3>Windows</h3>
+<pre>nslookup example.com</pre>
+<h3>Linux</h3>
+<pre>nslookup example.com</pre>
+<p>يمكن أيضًا الاستعلام من خادم محدد:</p>
+<pre>nslookup example.com 1.1.1.1</pre>
+<div class="example">
+<strong>سيناريو:</strong> يستطيع المستخدم الوصول إلى عنوان IP لخادم، لكنه لا يستطيع الوصول إليه باسمه. افحص إعدادات DNS والسجلات المطلوبة قبل تغيير أي إعدادات.
+</div>
+</section>
+
+<section class="section">
+<h2>7. تتبع المسار باستخدام Traceroute</h2>
+<p>تساعد أدوات تتبع المسار في استكشاف الموجّهات أو القفزات التي تمر عبرها حزم الفحص نحو الوجهة.</p>
+<h3>Windows</h3>
+<pre>tracert 8.8.8.8</pre>
+<h3>Linux</h3>
+<pre>traceroute 8.8.8.8</pre>
+<p>قد تحتاج إلى تثبيت traceroute على بعض توزيعات Linux.</p>
+<p>تعتمد هذه الأدوات على قيمة TTL أو Hop Limit ورسائل الشبكة المرتبطة بها.</p>
+<div class="warning">قد لا تظهر جميع القفزات، وقد تختلف مسارات الفحص عن مسارات حركة التطبيقات. ظهور * لا يثبت وحده وجود عطل.</div>
+</section>
+
+<section class="section">
+<h2>8. تشخيص مشكلات Routing وVLAN</h2>
+<p>قد تكون إعدادات IP صحيحة، لكن الجهاز لا يستطيع الوصول إلى شبكة أخرى بسبب مشكلة في التوجيه أو تقسيم الشبكة.</p>
+<div class="example">
+<strong>سيناريو:</strong>
+<pre>PC1: 192.168.10.10/24
+VLAN 10
+
+PC2: 192.168.20.10/24
+VLAN 20</pre>
+<p>إذا لم يوجد Inter-VLAN Routing، فلن يتمكن الجهازان عادة من التواصل عبر الطبقة الثالثة.</p>
+</div>
+<p>عند التشخيص افحص:</p>
+<ul>
+<li>VLAN المخصصة لكل منفذ.</li>
+<li>حالة روابط Trunk وVLAN المسموحة عليها.</li>
+<li>البوابات الافتراضية للأجهزة.</li>
+<li>جداول التوجيه.</li>
+<li>قواعد ACL وجدران الحماية.</li>
+</ul>
+</section>
+
+<section class="section">
+<h2>9. تشخيص البطء وفقدان الحزم</h2>
+<p>قد ينتج ضعف الأداء عن ازدحام الشبكة أو مشكلات في الوصلات أو أخطاء الواجهات أو قيود الخادم أو التطبيق.</p>
+<p>من المؤشرات المهمة:</p>
+<ul>
+<li><strong>Latency:</strong> زمن التأخير.</li>
+<li><strong>Packet Loss:</strong> نسبة الحزم المفقودة.</li>
+<li><strong>Jitter:</strong> تفاوت زمن وصول الحزم.</li>
+<li><strong>Throughput:</strong> معدل نقل البيانات الفعلي.</li>
+</ul>
+<div class="table-wrap">
+<table>
+<tr><th>العرض</th><th>احتمال يحتاج إلى فحص</th></tr>
+<tr><td>بطء جميع التطبيقات</td><td>ازدحام أو مشكلة في الاتصال</td></tr>
+<tr><td>بطء تطبيق واحد</td><td>الخادم أو التطبيق أو مساره</td></tr>
+<tr><td>انقطاع متكرر</td><td>وصلة غير مستقرة أو مشكلات لاسلكية</td></tr>
+<tr><td>تأخر المكالمات</td><td>Latency أو Jitter أو Packet Loss</td></tr>
+</table>
+</div>
+</section>
+
+<section class="section">
+<h2>10. مختبر تطبيقي: حل مشكلة اتصال</h2>
+<p>نفّذ التمرين التالي على جهازك أو داخل مختبر افتراضي تملك صلاحية استخدامه.</p>
+<div class="example">
+<strong>الحالة:</strong> جهاز موظف متصل بالشبكة، لكنه لا يستطيع فتح موقع داخلي للشركة.
+</div>
+<ol>
+<li>تحقق من اتصال كابل الشبكة أو Wi-Fi.</li>
+<li>اعرض إعدادات IP والبوابة الافتراضية.</li>
+<li>اختبر الاتصال بالبوابة باستخدام Ping.</li>
+<li>تحقق من حل اسم الموقع باستخدام nslookup.</li>
+<li>افحص المسار باستخدام tracert أو traceroute عند الحاجة.</li>
+<li>راجع ما إذا كانت الخدمة المطلوبة تعمل على المنفذ المناسب.</li>
+<li>تحقق من سياسات Firewall أو ACL إذا كانت لديك الصلاحية.</li>
+<li>حدد السبب الأكثر احتمالًا بناءً على النتائج.</li>
+<li>اختبر الحل المصرح به.</li>
+<li>وثّق المشكلة والإجراءات والنتيجة النهائية.</li>
+</ol>
+<p>يمكن استخدام Cisco Packet Tracer لبناء سيناريوهات افتراضية تشمل IP وVLAN وRouting وDHCP.</p>
+</section>
+
+<section class="section">
+<h2>11. مراجعة نهائية لمسار أساسيات الشبكات</h2>
+<p>قبل الاختبار النهائي، تأكد من فهم هذه المفاهيم:</p>
+<div class="table-wrap">
+<table>
+<tr><th>الموضوع</th><th>المهارة المطلوبة</th></tr>
+<tr><td>Network Fundamentals</td><td>فهم مكونات الشبكة</td></tr>
+<tr><td>IP Addressing</td><td>تمييز عناوين الشبكات</td></tr>
+<tr><td>DNS</td><td>فهم ترجمة أسماء النطاقات</td></tr>
+<tr><td>TCP / UDP</td><td>فهم بروتوكولات النقل</td></tr>
+<tr><td>DHCP</td><td>فهم توزيع العناوين تلقائيًا</td></tr>
+<tr><td>OSI / TCP/IP</td><td>فهم طبقات الاتصال</td></tr>
+<tr><td>Routing</td><td>فهم انتقال الحزم بين الشبكات</td></tr>
+<tr><td>Switching / VLAN</td><td>فهم تقسيم الشبكات المحلية</td></tr>
+<tr><td>Network Security</td><td>فهم أدوات الحماية الأساسية</td></tr>
+<tr><td>Troubleshooting</td><td>تشخيص المشكلات بطريقة منهجية</td></tr>
+</table>
+</div>
+</section>
+
+<section class="quiz">
+<h2>🏆 الاختبار النهائي للدرس العاشر</h2>
+<p>أجب عن الأسئلة العشرة. النجاح من 8/10، وسيُحفظ أفضل أداء لك.</p>
+
+<form id="quiz-form">
+
+<div class="question">
+<h3>1. ما أول خطوة مناسبة عند تشخيص مشكلة شبكة؟</h3>
+<label><input type="radio" name="q1" value="a"> إعادة ضبط جميع الأجهزة فورًا</label>
+<label><input type="radio" name="q1" value="b"> تحديد المشكلة وجمع المعلومات</label>
+<label><input type="radio" name="q1" value="c"> حذف إعدادات الشبكة</label>
+<label><input type="radio" name="q1" value="d"> تعطيل جدار الحماية</label>
+</div>
+
+<div class="question">
+<h3>2. ما الوظيفة الأساسية لأداة Ping؟</h3>
+<label><input type="radio" name="q2" value="a"> اختبار استجابة وجهة باستخدام ICMP</label>
+<label><input type="radio" name="q2" value="b"> إنشاء VLAN</label>
+<label><input type="radio" name="q2" value="c"> تعديل عناوين MAC</label>
+<label><input type="radio" name="q2" value="d"> تشفير البيانات</label>
+</div>
+
+<div class="question">
+<h3>3. ما الأمر الذي يعرض إعدادات IP التفصيلية في Windows؟</h3>
+<label><input type="radio" name="q3" value="a"> dir</label>
+<label><input type="radio" name="q3" value="b"> tasklist</label>
+<label><input type="radio" name="q3" value="c"> ipconfig /all</label>
+<label><input type="radio" name="q3" value="d"> mkdir</label>
+</div>
+
+<div class="question">
+<h3>4. ماذا قد يشير إليه عنوان 169.254.x.x في Windows؟</h3>
+<label><input type="radio" name="q4" value="a"> نجاح VPN</label>
+<label><input type="radio" name="q4" value="b"> تشغيل DNSSEC</label>
+<label><input type="radio" name="q4" value="c"> وجود عنوان عام ثابت</label>
+<label><input type="radio" name="q4" value="d"> استخدام عنوان APIPA بعد تعذر الحصول على عنوان DHCP</label>
+</div>
+
+<div class="question">
+<h3>5. ما الأداة المناسبة للاستعلام عن DNS؟</h3>
+<label><input type="radio" name="q5" value="a"> format</label>
+<label><input type="radio" name="q5" value="b"> nslookup</label>
+<label><input type="radio" name="q5" value="c"> shutdown</label>
+<label><input type="radio" name="q5" value="d"> copy</label>
+</div>
+
+<div class="question">
+<h3>6. ما وظيفة tracert في Windows؟</h3>
+<label><input type="radio" name="q6" value="a"> استكشاف القفزات نحو الوجهة</label>
+<label><input type="radio" name="q6" value="b"> عرض كلمات المرور</label>
+<label><input type="radio" name="q6" value="c"> إنشاء حساب مستخدم</label>
+<label><input type="radio" name="q6" value="d"> حذف سجل DNS</label>
+</div>
+
+<div class="question">
+<h3>7. ما المطلوب عادة لتمكين الاتصال بين VLAN مختلفة؟</h3>
+<label><input type="radio" name="q7" value="a"> تغيير اسم الحاسوب</label>
+<label><input type="radio" name="q7" value="b"> تعطيل DHCP</label>
+<label><input type="radio" name="q7" value="c"> Inter-VLAN Routing</label>
+<label><input type="radio" name="q7" value="d"> إزالة جميع المحوّلات</label>
+</div>
+
+<div class="question">
+<h3>8. ما المقصود بـ Packet Loss؟</h3>
+<label><input type="radio" name="q8" value="a"> زيادة حجم الشاشة</label>
+<label><input type="radio" name="q8" value="b"> تغيير عنوان MAC</label>
+<label><input type="radio" name="q8" value="c"> سرعة المعالج</label>
+<label><input type="radio" name="q8" value="d"> فقدان بعض الحزم أثناء النقل</label>
+</div>
+
+<div class="question">
+<h3>9. إذا نجح الاتصال بعنوان IP وفشل الوصول باسم الموقع، فما المكوّن الذي ينبغي فحصه؟</h3>
+<label><input type="radio" name="q9" value="a"> DNS</label>
+<label><input type="radio" name="q9" value="b"> لوحة المفاتيح</label>
+<label><input type="radio" name="q9" value="c"> دقة الشاشة</label>
+<label><input type="radio" name="q9" value="d"> ذاكرة الرسومات</label>
+</div>
+
+<div class="question">
+<h3>10. ما الخطوة المهمة بعد إصلاح مشكلة الشبكة؟</h3>
+<label><input type="radio" name="q10" value="a"> حذف جميع السجلات</label>
+<label><input type="radio" name="q10" value="b"> التحقق من الحل وتوثيق الإجراءات</label>
+<label><input type="radio" name="q10" value="c"> تعطيل المراقبة</label>
+<label><input type="radio" name="q10" value="d"> تجاهل المستخدم</label>
+</div>
+
+<button type="button" id="grade">تصحيح الاختبار النهائي</button>
+<button type="reset" id="retry">إعادة المحاولة</button>
+</form>
+
+<div id="result" aria-live="polite"></div>
+</section>
+
+<section class="nav-box">
+<a class="btn" href="network-lesson-9.html">→ الدرس السابق</a>
+<a class="btn" href="network-course.html">العودة لمسار الشبكات</a>
+</section>
+
+</main>
+
+<footer>© 2026 Dr.K | CyberArab Academy · جميع الحقوق محفوظة</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  const answers = [
+    "b","a","c","d","b",
+    "a","c","d","a","b"
+  ];
+
+  const key = "cyberarab_lesson10_score";
+  const form = document.getElementById("quiz-form");
+  const result = document.getElementById("result");
+  const main = document.querySelector("main");
+
+  function savedScore() {
+    const raw = localStorage.getItem(key);
+    const score = raw === null ? 0 : Number(raw);
+    return Number.isFinite(score) ? score : 0;
+  }
+
+  const previousScore = Number(
+    localStorage.getItem("cyberarab_lesson9_score") || 0
+  );
+
+  if (!Number.isFinite(previousScore) || previousScore < 16) {
+    main.innerHTML = `
+      <section class="hero" style="text-align:center">
+        <h1>🔒 الدرس العاشر مقفل</h1>
+        <p>يجب اجتياز اختبار الدرس التاسع بنسبة 80% على الأقل قبل الانتقال إلى الدرس العاشر.</p>
+        <a class="btn" href="network-lesson-9.html">الانتقال إلى الدرس التاسع</a>
+        <a class="btn" href="network-course.html">العودة إلى المسار</a>
+      </section>
+    `;
+    return;
+  }
+
+  document.getElementById("grade").addEventListener("click", () => {
+    let correct = 0;
+    let answered = 0;
+
+    answers.forEach((answer, index) => {
+      const selected = form.querySelector(
+        `input[name="q${index + 1}"]:checked`
+      );
+
+      if (selected) {
+        answered++;
+        if (selected.value === answer) correct++;
+      }
+    });
+
+    if (answered !== 10) {
+      alert("الرجاء الإجابة عن جميع الأسئلة قبل التصحيح.");
+      return;
+    }
+
+    const passed = correct >= 8;
+    const normalized = correct * 2;
+
+    localStorage.setItem(
+      key,
+      String(Math.max(savedScore(), normalized))
+    );
+
+    result.style.display = "block";
+    result.className = passed ? "success" : "failure";
+
+    result.textContent =
+      "النتيجة: " + correct + " / 10 — " +
+      (passed
+        ? "🎉 تهانينا! اجتزت الدرس العاشر بنسبة " +
+          (correct * 10) +
+          "%. يمكنك العودة إلى المسار لمراجعة تقدمك."
+        : "تحتاج إلى 80% للنجاح. راجع الدرس ثم أعد المحاولة.");
+
+    result.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
+  document.getElementById("retry").addEventListener("click", () => {
+    result.style.display = "none";
+    result.textContent = "";
+    result.className = "";
+  });
+})();
+</script>
+
+<script src="academy.js" defer></script>
+</body>
+</html>
