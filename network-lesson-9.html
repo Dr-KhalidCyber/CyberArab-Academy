@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="الدرس التاسع: أساسيات أمن الشبكات - أكاديمية سايبر عرب">
+<title>الدرس التاسع | Network Security | CyberArab Academy</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071323;color:#eef8ff;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+a{color:#6bdaff}
+header{max-width:1250px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+header img{width:145px;height:auto}
+header a{text-decoration:none;font-weight:bold}
+main{max-width:1100px;margin:25px auto;padding:0 20px}
+.hero,.section,.quiz,.nav-box{background:linear-gradient(140deg,#0e2944,#071a2e);border:1px solid #295d86;border-radius:18px;padding:27px;margin-bottom:22px}
+.hero{background:linear-gradient(120deg,#123b59,#071323)}
+.tag{display:inline-block;color:#6bdaff;background:#0b2942;padding:5px 14px;border-radius:25px;font-size:13px}
+h1{font-size:clamp(28px,4vw,43px);line-height:1.5;margin:12px 0}
+h2{color:#75d9ff;font-size:23px;margin:0 0 15px}
+h3{color:#c3eaff}
+p,li{color:#d1e1ef}
+strong{color:#fff}
+ul,ol{padding-right:25px}
+.example{background:#081c30;border-right:4px solid #17d6ff;padding:16px;border-radius:9px;margin:15px 0}
+.warning{background:#302318;border-right:4px solid #ffbd69;padding:15px;border-radius:9px;margin:15px 0}
+pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;background:#06111e;border:1px solid #2c536e;padding:18px;border-radius:10px;color:#b9f2ff;font-size:14px;line-height:1.7}
+code{direction:ltr;unicode-bidi:isolate;color:#91e8ff}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:14px}
+th,td{border:1px solid #315775;padding:12px;text-align:right}
+th{background:#123d5d}
+.table-wrap{overflow-x:auto}
+.question{background:#0b2035;border:1px solid #315775;padding:18px;border-radius:13px;margin:16px 0}
+.question h3{font-size:17px;margin:0 0 12px}
+.question label{display:block;padding:10px;margin:7px 0;border:1px solid #315775;border-radius:9px;cursor:pointer}
+.question label:hover{background:#16405f}
+.question input{margin-left:9px;accent-color:#17c9ff}
+button,.btn{background:linear-gradient(120deg,#087ac5,#03b9fa);border:0;color:white;font-weight:bold;border-radius:10px;padding:13px 24px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block;margin:5px}
+button:hover,.btn:hover{filter:brightness(1.12)}
+#result{margin-top:18px;padding:18px;border-radius:12px;background:#0b2035;display:none}
+#result.success{border:1px solid #32ca9c}
+#result.failure{border:1px solid #ffbd69}
+.nav-box{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+footer{text-align:center;color:#a4bfd4;padding:25px}
+@media(max-width:650px){.section,.quiz,.hero{padding:19px}table{font-size:12px}}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html"><img src="drk-logo.webp" alt="شعار أكاديمية سايبر عرب"></a>
+<a href="network-course.html">← مسار أساسيات الشبكات</a>
+</header>
+
+<main>
+<section class="hero">
+<span class="tag">مسار أساسيات الشبكات · الدرس 9 من 10</span>
+<h1>🛡️ أساسيات أمن الشبكات</h1>
+<p>Network Security Fundamentals: تعرّف على كيفية حماية الشبكات، ومراقبة التهديدات، والتحكم في حركة البيانات، والاستجابة الأولية للحوادث.</p>
+<p><strong>المستوى:</strong> مبتدئ إلى متوسط · <strong>الاختبار:</strong> 10 أسئلة · <strong>النجاح:</strong> 80%</p>
+</section>
+
+<section class="section">
+<h2>1. ما المقصود بأمن الشبكات؟</h2>
+<p>أمن الشبكات Network Security هو مجموعة من التقنيات والسياسات والإجراءات المستخدمة لحماية البنية التحتية للشبكة والبيانات المتبادلة عبرها من الوصول غير المصرح به والهجمات والتعطيل.</p>
+<p>يرتبط أمن الشبكات بثلاثة أهداف أساسية تعرف باسم CIA Triad:</p>
+<ul>
+<li><strong>Confidentiality:</strong> السرية، أي منع الاطلاع غير المصرح به على المعلومات.</li>
+<li><strong>Integrity:</strong> السلامة، أي حماية المعلومات من التعديل غير المصرح به.</li>
+<li><strong>Availability:</strong> التوافر، أي ضمان إمكانية الوصول إلى الخدمات عند الحاجة.</li>
+</ul>
+<div class="example">
+<strong>مثال:</strong> استخدام TLS لحماية البيانات أثناء النقل، وتحديد صلاحيات المستخدمين، وتوفير مسارات اتصال احتياطية؛ كلها إجراءات تدعم أهداف أمن الشبكات.
+</div>
+</section>
+
+<section class="section">
+<h2>2. ما هو Firewall؟</h2>
+<p>جدار الحماية Firewall نظام يتحكم في حركة مرور الشبكة وفق قواعد وسياسات محددة، مثل عنوان IP المصدر والوجهة، والبروتوكول، والمنفذ، وحالة الاتصال.</p>
+<div class="table-wrap">
+<table>
+<tr><th>النوع</th><th>الوصف</th></tr>
+<tr><td>Packet Filtering</td><td>تصفية الحزم باستخدام معلومات مثل العناوين والمنافذ</td></tr>
+<tr><td>Stateful Firewall</td><td>يتتبع حالة الاتصالات لاتخاذ قرارات أكثر سياقية</td></tr>
+<tr><td>Next-Generation Firewall</td><td>قد يتضمن فحص التطبيقات وميزات كشف التهديدات</td></tr>
+</table>
+</div>
+<div class="example">
+<strong>مثال لسياسة:</strong>
+<pre>Allow: TCP 443 -> Web Server
+Deny:  All other inbound traffic</pre>
+<p>تسمح هذه السياسة بالوصول إلى خادم الويب عبر HTTPS، وتحظر الاتصالات الواردة الأخرى، بافتراض ترتيب القواعد وتطبيقها بالشكل الصحيح.</p>
+</div>
+</section>
+
+<section class="section">
+<h2>3. الفرق بين IDS وIPS</h2>
+<p><strong>IDS — Intrusion Detection System:</strong> نظام يراقب الأنشطة ويكشف مؤشرات التسلل أو السلوك المشبوه، ويصدر تنبيهات للتحليل.</p>
+<p><strong>IPS — Intrusion Prevention System:</strong> نظام يستطيع اكتشاف بعض التهديدات واتخاذ إجراءات منع، مثل إسقاط حزم أو حظر حركة مرور، وفق سياسة النظام.</p>
+<div class="table-wrap">
+<table>
+<tr><th>المقارنة</th><th>IDS</th><th>IPS</th></tr>
+<tr><td>المهمة الأساسية</td><td>الكشف والتنبيه</td><td>الكشف والمنع</td></tr>
+<tr><td>الموقع المعتاد</td><td>مراقبة الحركة</td><td>قد يعمل ضمن مسار الحركة</td></tr>
+<tr><td>التحدي</td><td>التنبيهات الكاذبة</td><td>احتمال حظر حركة سليمة</td></tr>
+</table>
+</div>
+<div class="warning">لا يستطيع أي IDS أو IPS ضمان اكتشاف جميع الهجمات. تعتمد الفعالية على جودة الإعدادات والتحديثات ومصادر البيانات.</div>
+</section>
+
+<section class="section">
+<h2>4. ما هو VPN؟</h2>
+<p>الشبكة الافتراضية الخاصة Virtual Private Network تستخدم تقنيات لإنشاء اتصال منطقي محمي بين نقاط مختلفة عبر شبكة أخرى، مثل الإنترنت.</p>
+<p>يمكن استخدام VPN لربط موظف يعمل عن بُعد بشبكة المؤسسة أو لربط فرعين من الشركة.</p>
+<ul>
+<li><strong>Remote Access VPN:</strong> اتصال مستخدم عن بُعد بشبكة المؤسسة.</li>
+<li><strong>Site-to-Site VPN:</strong> ربط شبكتين أو موقعين.</li>
+<li><strong>IPsec:</strong> مجموعة بروتوكولات يمكن استخدامها لحماية حركة IP.</li>
+</ul>
+<p>لا يجعل VPN المستخدم مجهول الهوية بالكامل، ولا يحمي تلقائيًا من البرمجيات الخبيثة أو التصيد.</p>
+</section>
+
+<section class="section">
+<h2>5. هجمات شائعة على الشبكات</h2>
+<div class="table-wrap">
+<table>
+<tr><th>الهجوم</th><th>الفكرة</th><th>إجراء دفاعي</th></tr>
+<tr><td>DoS / DDoS</td><td>إغراق خدمة بطلبات أو حركة مرور لتعطيلها</td><td>تصفية الحركة وخدمات التخفيف</td></tr>
+<tr><td>ARP Spoofing</td><td>إرسال معلومات ARP مضللة في الشبكة المحلية</td><td>Dynamic ARP Inspection عند توفره</td></tr>
+<tr><td>DNS Spoofing</td><td>التلاعب بإجابات DNS أو توجيهها</td><td>ضوابط DNS والتحقق المناسب</td></tr>
+<tr><td>Man-in-the-Middle</td><td>اعتراض الاتصال أو التأثير فيه</td><td>تشفير الاتصال والتحقق من الشهادات</td></tr>
+<tr><td>Port Scanning</td><td>استكشاف المنافذ والخدمات المتاحة</td><td>تقليل الخدمات المكشوفة والمراقبة</td></tr>
+</table>
+</div>
+<p>فحص المنافذ قد يكون نشاطًا إداريًا مشروعًا أو جزءًا من استطلاع هجومي؛ يحدد السياق والتفويض مشروعيته.</p>
+</section>
+
+<section class="section">
+<h2>6. تقسيم الشبكات Network Segmentation</h2>
+<p>تقسيم الشبكات هو فصل الأنظمة إلى مجموعات وفق الحاجة التشغيلية ومستوى الثقة، مع التحكم في الاتصالات بينها.</p>
+<div class="example">
+<pre>Employee Network
+       |
+    Firewall
+       |
+Server Network
+
+Guest Network
+       |
+Restricted Internet Access</pre>
+<p>يساعد التقسيم في تقليل الحركة الجانبية Lateral Movement إذا تعرض أحد الأجهزة للاختراق.</p>
+</div>
+<p>يمكن استخدام VLAN للمساعدة في الفصل المنطقي، لكن التحكم الأمني بين القطاعات يحتاج إلى قواعد وسياسات مناسبة.</p>
+</section>
+
+<section class="section">
+<h2>7. مبدأ أقل الصلاحيات Least Privilege</h2>
+<p>يعني منح المستخدم أو التطبيق أو الجهاز أقل قدر من الصلاحيات اللازمة لأداء المهمة المطلوبة، وللمدة المناسبة.</p>
+<p>على سبيل المثال، لا ينبغي منح موظف استقبال صلاحية إدارة إعدادات الموجّهات لمجرد حاجته إلى استخدام شبكة الشركة.</p>
+<p>من الإجراءات المساندة:</p>
+<ul>
+<li>التحقق متعدد العوامل MFA.</li>
+<li>مراجعة الصلاحيات دوريًا.</li>
+<li>فصل الحسابات الإدارية عن الحسابات اليومية.</li>
+<li>تسجيل الأنشطة المهمة ومراجعتها.</li>
+</ul>
+</section>
+
+<section class="section">
+<h2>8. مراقبة الشبكات والسجلات</h2>
+<p>تساعد سجلات الأجهزة الأمنية والشبكية في التحقيق في الحوادث واكتشاف السلوك غير المعتاد.</p>
+<p>من المصادر الشائعة:</p>
+<ul>
+<li>Firewall Logs: الاتصالات المسموحة والمرفوضة.</li>
+<li>DNS Logs: استعلامات أسماء النطاقات.</li>
+<li>VPN Logs: محاولات الاتصال وجلسات المستخدمين.</li>
+<li>IDS/IPS Alerts: تنبيهات التهديدات.</li>
+<li>NetFlow/IPFIX: بيانات وصفية عن تدفقات الشبكة.</li>
+</ul>
+<div class="example">
+<strong>مثال تنبيه افتراضي:</strong>
+<pre>Time: 10:35:22
+Source: 192.168.10.25
+Destination: 192.168.20.10
+Destination Port: 22
+Action: Denied
+Rule: Block-Guest-To-Servers</pre>
+<p>هذا السجل يشير إلى محاولة اتصال تم حظرها. لا يكفي السجل وحده للحكم بأنها هجوم؛ يجب تحليل السياق.</p>
+</div>
+</section>
+
+<section class="section">
+<h2>9. خطوات الاستجابة الأولية لحادث شبكي</h2>
+<ol>
+<li><strong>Detection:</strong> اكتشاف التنبيه أو النشاط غير المعتاد.</li>
+<li><strong>Triage:</strong> تقييم أولي لمدى خطورة الحدث وصحته.</li>
+<li><strong>Investigation:</strong> مراجعة السجلات والأجهزة والأدلة.</li>
+<li><strong>Containment:</strong> احتواء التهديد إذا ثبتت الحاجة وبحسب الصلاحيات.</li>
+<li><strong>Recovery:</strong> استعادة الأنظمة والتحقق من سلامة التشغيل.</li>
+<li><strong>Lessons Learned:</strong> توثيق النتائج وتحسين الضوابط.</li>
+</ol>
+<div class="warning">عند التعامل مع حادث حقيقي، اتبع إجراءات المؤسسة وصلاحياتك، واحرص على عدم إتلاف الأدلة أو تعطيل الأنظمة دون تفويض.</div>
+</section>
+
+<section class="section">
+<h2>10. تطبيق عملي دفاعي</h2>
+<p>نفّذ هذا التمرين على جهازك الشخصي أو داخل مختبر مصرح به.</p>
+<h3>Windows: عرض إعدادات جدار الحماية</h3>
+<pre>netsh advfirewall show allprofiles</pre>
+<h3>Windows: عرض الاتصالات الحالية</h3>
+<pre>netstat -ano</pre>
+<h3>Linux: عرض المنافذ المستمعة</h3>
+<pre>ss -tuln</pre>
+<h3>Linux: عرض حالة UFW إذا كان مثبتًا</h3>
+<pre>sudo ufw status verbose</pre>
+<div class="example">
+<strong>تمرين التحليل:</strong>
+<ol>
+<li>اعرض المنافذ المستمعة على جهازك.</li>
+<li>حدد خدمة واحدة تعرف سبب استخدامها.</li>
+<li>تحقق من حالة جدار الحماية.</li>
+<li>اشرح الفرق بين منفذ يستمع محليًا ومنفذ يمكن الوصول إليه عبر الشبكة.</li>
+<li>اكتب اقتراحًا لتقليل الخدمات غير الضرورية دون إيقاف أي خدمة فعلية.</li>
+</ol>
+</div>
+<p>المنفذ المستمع لا يعني بالضرورة أنه مكشوف للإنترنت؛ فقد تمنع جدران الحماية أو إعدادات الربط الوصول إليه.</p>
+</section>
+
+<section class="quiz">
+<h2>📝 اختبار الدرس التاسع</h2>
+<p>اختر إجابة واحدة لكل سؤال. تحتاج إلى 8 إجابات صحيحة على الأقل للنجاح.</p>
+<form id="quiz-form">
+
+<div class="question">
+<h3>1. ما العناصر الثلاثة الأساسية في CIA Triad؟</h3>
+<label><input type="radio" name="q1" value="a"> CPU وRAM وDisk</label>
+<label><input type="radio" name="q1" value="b"> DNS وDHCP وHTTP</label>
+<label><input type="radio" name="q1" value="c"> السرية والسلامة والتوافر</label>
+<label><input type="radio" name="q1" value="d"> IP وMAC وPort</label>
+</div>
+
+<div class="question">
+<h3>2. ما المهمة الأساسية لجدار الحماية Firewall؟</h3>
+<label><input type="radio" name="q2" value="a"> التحكم في حركة الشبكة وفق السياسات</label>
+<label><input type="radio" name="q2" value="b"> زيادة حجم الذاكرة</label>
+<label><input type="radio" name="q2" value="c"> استبدال نظام التشغيل</label>
+<label><input type="radio" name="q2" value="d"> إنشاء أسماء النطاقات</label>
+</div>
+
+<div class="question">
+<h3>3. ما الفرق الأساسي بين IDS وIPS؟</h3>
+<label><input type="radio" name="q3" value="a"> IDS يعمل دون شبكة دائمًا</label>
+<label><input type="radio" name="q3" value="b"> IPS لا يستطيع الكشف</label>
+<label><input type="radio" name="q3" value="c"> لا يوجد فرق</label>
+<label><input type="radio" name="q3" value="d"> IPS يستطيع اتخاذ إجراءات منع</label>
+</div>
+
+<div class="question">
+<h3>4. أي استخدام يُعد مثالًا على Site-to-Site VPN؟</h3>
+<label><input type="radio" name="q4" value="a"> تغيير دقة الشاشة</label>
+<label><input type="radio" name="q4" value="b"> ربط شبكتي فرعين عبر اتصال محمي</label>
+<label><input type="radio" name="q4" value="c"> حذف السجلات</label>
+<label><input type="radio" name="q4" value="d"> تشغيل الطابعة محليًا</label>
+</div>
+
+<div class="question">
+<h3>5. ما الهدف المعتاد لهجوم DDoS؟</h3>
+<label><input type="radio" name="q5" value="a"> تحسين أداء الشبكة</label>
+<label><input type="radio" name="q5" value="b"> إنشاء VLAN</label>
+<label><input type="radio" name="q5" value="c"> تعطيل خدمة بإغراقها بالحركة</label>
+<label><input type="radio" name="q5" value="d"> تغيير عنوان MAC فقط</label>
+</div>
+
+<div class="question">
+<h3>6. ما فائدة Network Segmentation؟</h3>
+<label><input type="radio" name="q6" value="a"> تقليل الانتشار الجانبي والتحكم في الاتصالات</label>
+<label><input type="radio" name="q6" value="b"> إزالة الحاجة إلى النسخ الاحتياطي</label>
+<label><input type="radio" name="q6" value="c"> ضمان منع كل الاختراقات</label>
+<label><input type="radio" name="q6" value="d"> تعطيل جميع المستخدمين</label>
+</div>
+
+<div class="question">
+<h3>7. ماذا يعني Least Privilege؟</h3>
+<label><input type="radio" name="q7" value="a"> منح الجميع صلاحية المدير</label>
+<label><input type="radio" name="q7" value="b"> عدم استخدام كلمات مرور</label>
+<label><input type="radio" name="q7" value="c"> مشاركة الحسابات</label>
+<label><input type="radio" name="q7" value="d"> منح أقل صلاحيات لازمة لأداء المهمة</label>
+</div>
+
+<div class="question">
+<h3>8. أي مصدر يساعد في معرفة استعلامات أسماء النطاقات؟</h3>
+<label><input type="radio" name="q8" value="a"> سجلات الطباعة فقط</label>
+<label><input type="radio" name="q8" value="b"> DNS Logs</label>
+<label><input type="radio" name="q8" value="c"> إعدادات الشاشة</label>
+<label><input type="radio" name="q8" value="d"> ملفات الصور</label>
+</div>
+
+<div class="question">
+<h3>9. ما التصرف الأنسب عند ظهور تنبيه أمني غير مؤكد؟</h3>
+<label><input type="radio" name="q9" value="a"> حذفه مباشرة</label>
+<label><input type="radio" name="q9" value="b"> تعطيل جميع الأنظمة</label>
+<label><input type="radio" name="q9" value="c"> تقييم التنبيه والتحقق من السياق والأدلة</label>
+<label><input type="radio" name="q9" value="d"> نشر بيانات المستخدمين</label>
+</div>
+
+<div class="question">
+<h3>10. ماذا يعرض الأمر ss -tuln على Linux؟</h3>
+<label><input type="radio" name="q10" value="a"> معلومات عن مقابس TCP وUDP المستمعة</label>
+<label><input type="radio" name="q10" value="b"> كلمات المرور المحفوظة</label>
+<label><input type="radio" name="q10" value="c"> جميع الملفات المحذوفة</label>
+<label><input type="radio" name="q10" value="d"> إعدادات BIOS</label>
+</div>
+
+<button type="button" id="grade">تصحيح الاختبار</button>
+<button type="reset" id="retry">إعادة المحاولة</button>
+</form>
+<div id="result" aria-live="polite"></div>
+</section>
+
+<section class="nav-box">
+<a class="btn" href="network-lesson-8.html">→ الدرس السابق</a>
+<a class="btn" href="network-course.html">العودة لمسار الشبكات</a>
+<span>الدرس العاشر: قريبًا 🔒</span>
+</section>
+
+</main>
+<footer>© 2026 Dr.K | CyberArab Academy · جميع الحقوق محفوظة</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  const answers = ["c","a","d","b","c","a","d","b","c","a"];
+  const key = "cyberarab_lesson9_score";
+
+  const form = document.getElementById("quiz-form");
+  const result = document.getElementById("result");
+  const main = document.querySelector("main");
+
+  function savedScore() {
+    const raw = localStorage.getItem(key);
+    const score = raw === null ? 0 : Number(raw);
+    return Number.isFinite(score) ? score : 0;
+  }
+
+  const previousScore = Number(
+    localStorage.getItem("cyberarab_lesson8_score") || 0
+  );
+
+  if (!Number.isFinite(previousScore) || previousScore < 16) {
+    main.innerHTML = `
+      <section class="hero" style="text-align:center">
+        <h1>🔒 الدرس التاسع مقفل</h1>
+        <p>يجب اجتياز اختبار الدرس الثامن بنسبة 80% على الأقل قبل الانتقال إلى الدرس التاسع.</p>
+        <a class="btn" href="network-lesson-8.html">الانتقال إلى الدرس الثامن</a>
+        <a class="btn" href="network-course.html">العودة إلى المسار</a>
+      </section>
+    `;
+    return;
+  }
+
+  document.getElementById("grade").addEventListener("click", () => {
+    let correct = 0;
+    let answered = 0;
+
+    answers.forEach((answer, index) => {
+      const selected = form.querySelector(
+        `input[name="q${index + 1}"]:checked`
+      );
+
+      if (selected) {
+        answered++;
+        if (selected.value === answer) correct++;
+      }
+    });
+
+    if (answered !== 10) {
+      alert("الرجاء الإجابة عن جميع الأسئلة قبل التصحيح.");
+      return;
+    }
+
+    const passed = correct >= 8;
+    const normalized = correct * 2;
+
+    localStorage.setItem(
+      key,
+      String(Math.max(savedScore(), normalized))
+    );
+
+    result.style.display = "block";
+    result.className = passed ? "success" : "failure";
+    result.textContent =
+      "النتيجة: " + correct + " / 10 — " +
+      (passed
+        ? "🎉 ممتاز! اجتزت الاختبار بنسبة " + (correct * 10) + "%."
+        : "تحتاج إلى 80% للنجاح. راجع الدرس ثم أعد المحاولة.");
+
+    result.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
+  document.getElementById("retry").addEventListener("click", () => {
+    result.style.display = "none";
+    result.textContent = "";
+    result.className = "";
+  });
+})();
+</script>
+<script src="academy.js" defer></script>
+</body>
+</html>
