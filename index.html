@@ -1,13 +1,12 @@
-
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="أكاديمية سايبر عرب - تعلم الشبكات والأمن السيبراني باللغة العربية مع دروس واختبارات تفاعلية">
-    <title>Dr.K | أكاديمية سايبر عرب</title>
-    <link rel="stylesheet" href="theme.css">
-    <style>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="أكاديمية سايبر عرب - تعلم الشبكات والأمن السيبراني باللغة العربية مع مسارات تعليمية واختبارات تفاعلية">
+  <title>Dr.K | أكاديمية سايبر عرب</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
 body{
   margin:0}.home-nav{
   display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:1550px;margin:auto;padding:6px 25px}
@@ -67,6 +66,9 @@ body{
       .lesson-card.locked{opacity:.7}
       .lesson-card.locked .go{color:#c6d4df}
       .lesson-card.locked .go:before{content:'🔒 ';}
+      .lesson-card.coming-soon{opacity:.65;cursor:default}
+      .lesson-card.coming-soon:hover{transform:none;border-color:#426486}
+      .lesson-card.coming-soon .go{color:#a7bfd1}
       .progress-ring{width:140px;height:140px;border-radius:50%;margin:16px auto;display:grid;place-items:center;background:conic-gradient(#14c9ff 0%,#20374f 0)}
       .progress-ring span{background:#0b2035;width:110px;height:110px;border-radius:50%;display:grid;place-items:center;font-size:29px;font-weight:900}
       .progress-track{height:12px;background:#243c55;border-radius:30px;overflow:hidden}
@@ -82,165 +84,211 @@ body{
         .hero-copy{padding:120px 22px 35px}
         .hero-copy h1{font-size:36px}
         .features,.lessons{grid-template-columns:1fr}.lower{padding:0 12px}.panel{padding:16px}}
-</style>
-  </head>
-  <body>
-    <header class="home-nav">
-      <a class="drk-brand" href="index.html">
-        <img src="drk-logo.webp" alt="شعار Dr.K">
-        <span>
-          <b>CyberArab Academy</b>
-          <small>أكاديمية سايبر عرب</small>
-        </span>
+  </style>
+</head>
+<body>
+  <header class="home-nav">
+    <a class="drk-brand" href="index.html">
+      <img src="drk-logo.webp" alt="شعار Dr.K">
+      <span>
+        <b>CyberArab Academy</b>
+        <small>أكاديمية سايبر عرب</small>
+      </span>
+    </a>
+    <nav class="drk-nav">
+      <a class="active" href="index.html">⌂ الرئيسية</a>
+      <a href="#courses">▤ المسارات التعليمية</a>
+      <a href="#progress">▥ مساري التعليمي</a>
+      <a href="#about">ⓘ عن الأكاديمية</a>
+    </nav>
+  </header>
+
+  <section class="hero-home">
+    <div class="hero-copy">
+      <h1>ابدأ رحلتك في<br><em>الأمن السيبراني</em></h1>
+      <p>تعلّم الأمن السيبراني بالعربية، من الأساسيات إلى الاحتراف بمحتوى عملي، واختبارات، ومسار تدريبي متكامل.</p>
+      <div class="cta">
+        <a href="network-course.html">🚀 ابدأ التعلم الآن</a>
+        <a class="secondary" href="#courses">◉ استكشف المسارات</a>
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <span class="fi">⌨</span>
+      <div>
+        <b>دروس منظمة</b>
+        <small>محتوى احترافي خطوة بخطوة</small>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="fi">⚗</span>
+      <div>
+        <b>تطبيق عملي</b>
+        <small>أمثلة وتمارين واقعية</small>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="fi">◎</span>
+      <div>
+        <b>اختبارات تقييم</b>
+        <small>لقياس وتثبيت المعرفة</small>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="fi">▥</span>
+      <div>
+        <b>مسار تدريبي</b>
+        <small>من المبتدئ إلى المتقدم</small>
+      </div>
+    </div>
+  </section>
+
+  <main class="lower">
+    <section class="panel" id="courses">
+      <h2>▱ المسارات التعليمية</h2>
+      <p style="color:#9fbdd4">
+        اختر مسارك التعليمي، وتدرّج في الدروس والاختبارات حتى الإتقان.
+      </p>
+
+      <div class="lessons">
+
+        <a class="lesson-card" href="network-course.html">
+          <span class="lesson-icon">🌐</span>
+          <div>
+            <small>المسار الأول · مستوى مبتدئ</small>
+            <h3>أساسيات الشبكات</h3>
+            <p>
+              10 دروس تعليمية، منها 6 متاحة حاليًا.
+              تعلّم الشبكات والبروتوكولات وعناوين IP.
+            </p>
+          </div>
+          <span class="go">استعرض المسار ←</span>
+        </a>
+
+        <div class="lesson-card coming-soon">
+          <span class="lesson-icon">⌨</span>
+          <div>
+            <small>المسار الثاني · مستوى مبتدئ</small>
+            <h3>بايثون للمبتدئين</h3>
+            <p>
+              10 دروس مخططة لتعلم البرمجة بلغة Python
+              من الصفر مع تطبيقات واختبارات.
+            </p>
+          </div>
+          <span class="go">قريبًا</span>
+        </div>
+
+        <div class="lesson-card coming-soon">
+          <span class="lesson-icon">🛡</span>
+          <div>
+            <small>المسار الثالث</small>
+            <h3>أساسيات الأمن السيبراني</h3>
+            <p>
+              تعرّف على التهديدات والثغرات
+              والمبادئ الأساسية لحماية الأنظمة.
+            </p>
+          </div>
+          <span class="go">قريبًا</span>
+        </div>
+
+        <div class="lesson-card coming-soon">
+          <span class="lesson-icon">◎</span>
+          <div>
+            <small>المسار الرابع</small>
+            <h3>التحليل الأمني SOC</h3>
+            <p>
+              مقدمة في مراقبة الأحداث الأمنية،
+              وتحليل التنبيهات والاستجابة للحوادث.
+            </p>
+          </div>
+          <span class="go">قريبًا</span>
+        </div>
+
+      </div>
+    </section>
+
+    <aside class="panel" id="progress">
+      <h2>تقدمك في مسار الشبكات</h2>
+      <div class="progress-ring">
+        <span data-progress-value>0%</span>
+      </div>
+      <p style="text-align:center" data-progress-count>
+        0 من 10 دروس مجتازة
+      </p>
+      <div class="progress-track">
+        <div data-progress-bar></div>
+      </div>
+      <p style="color:#a9c7dc;font-size:13px">
+        يُحفظ التقدم على هذا المتصفح فقط.
+        اجتز كل اختبار بنسبة 80% لفتح الدرس التالي.
+      </p>
+      <a class="drk-next" href="network-course.html">
+        متابعة مسار الشبكات ←
       </a>
-      <nav class="drk-nav">
-        <a class="active" href="index.html">⌂ الرئيسية</a>
-        <a href="#courses">▤ الدورات</a>
-        <a href="#progress">▥ مساري التعليمي</a>
-        <a href="#about">ⓘ عن الأكاديمية</a>
-      </nav>
-    </header>
+    </aside>
+  </main>
 
-    <section class="hero-home">
-      <div class="hero-copy">
-        <h1>ابدأ رحلتك في<br><em>الأمن السيبراني</em></h1>
-        <p>تعلّم الأمن السيبراني بالعربية، من الأساسيات إلى الاحتراف بمحتوى عملي، واختبارات، ومسار تدريبي متكامل.</p>
-        <div class="cta">
-          <a href="network-lesson.html">🚀 ابدأ التعلم الآن</a>
-          <a class="secondary" href="#courses">◉ استكشف الدروس</a>
-        </div>
-      </div>
-      <div></div>
-    </section>
+  <section class="about" id="about">
+    <div class="panel">
+      <h2>عن أكاديمية سايبر عرب</h2>
+      <p>
+        مبادرة تعليمية باللغة العربية لتبسيط مفاهيم الشبكات
+        والأمن السيبراني، مع شرح تدريجي واختبارات تساعد
+        المتعلم على تقييم فهمه.
+      </p>
+    </div>
+  </section>
 
-    <section class="features">
-      <div class="feature">
-        <span class="fi">⌨</span>
-        <div>
-          <b>دروس منظمة</b>
-          <small>محتوى احترافي خطوة بخطوة</small>
-        </div>
-      </div>
-      <div class="feature">
-        <span class="fi">⚗</span>
-        <div>
-          <b>تطبيق عملي</b>
-          <small>أمثلة وتمارين واقعية</small>
-        </div>
-      </div>
-      <div class="feature">
-        <span class="fi">◎</span>
-        <div>
-          <b>اختبارات تقييم</b>
-          <small>لقياس وتثبيت المعرفة</small>
-        </div>
-      </div>
-      <div class="feature">
-        <span class="fi">▥</span>
-        <div>
-          <b>مسار تدريبي</b>
-          <small>من المبتدئ إلى المتقدم</small>
-        </div>
-      </div>
-    </section>
+  <footer class="footer">
+    © 2026 Dr.K | CyberArab Academy · جميع الحقوق محفوظة
+  </footer>
 
-    <main class="lower">
-      <section class="panel" id="courses">
-        <h2>▱ دورات الأمن السيبراني</h2>
-        <p style="color:#9fbdd4">مسار أساسيات الشبكات · ستة دروس مع اختبارات تفاعلية</p>
+  <script src="academy.js" defer></script>
 
-        <div class="lessons">
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const totalLessons = 10;
+      let completed = 0;
 
-          <a class="lesson-card" data-lock="1" href="network-lesson.html">
-            <span class="lesson-icon">⌘</span>
-            <div>
-              <small>الدرس الأول</small>
-              <h3>مقدمة الشبكات</h3>
-              <p>تعرف على الشبكات والأجهزة وكيف تنتقل البيانات</p>
-            </div>
-            <span class="go">ابدأ الدرس ←</span>
-          </a>
+      for (let i = 1; i <= totalLessons; i++) {
+        const saved = localStorage.getItem(
+          "cyberarab_lesson" + i + "_score"
+        );
 
-          <a class="lesson-card" data-lock="2" href="network-lesson-2.html">
-            <span class="lesson-icon">◎</span>
-            <div>
-              <small>الدرس الثاني</small>
-              <h3>عناوين IP</h3>
-              <p>افهم IPv4 والعناوين الخاصة وتقسيم الشبكات</p>
-            </div>
-            <span class="go">ابدأ الدرس ←</span>
-          </a>
+        if (saved !== null && Number(saved) >= 16) {
+          completed++;
+        }
+      }
 
-          <a class="lesson-card" data-lock="3" href="network-lesson-3.html">
-            <span class="lesson-icon">◈</span>
-            <div>
-              <small>الدرس الثالث</small>
-              <h3>نظام DNS</h3>
-              <p>اكتشف كيف تُترجم أسماء المواقع إلى عناوين</p>
-            </div>
-            <span class="go">ابدأ الدرس ←</span>
-          </a>
+      const percentage = Math.round(
+        (completed / totalLessons) * 100
+      );
 
-          <a class="lesson-card" data-lock="4" href="network-lesson-4.html">
-            <span class="lesson-icon">⇄</span>
-            <div>
-              <small>الدرس الرابع</small>
-              <h3>بروتوكولات TCP وUDP</h3>
-              <p>افهم الاتصال الموثوق والمنافذ وبروتوكولات النقل</p>
-            </div>
-            <span class="go">ابدأ الدرس ←</span>
-          </a>
+      const count = document.querySelector(
+        "[data-progress-count]"
+      );
+      if (count) {
+        count.textContent =
+          completed + " من " + totalLessons + " دروس مجتازة";
+      }
 
-          <a class="lesson-card" data-lock="5" href="network-lesson-5.html">
-            <span class="lesson-icon">▣</span>
-            <div>
-              <small>الدرس الخامس</small>
-              <h3>بروتوكول DHCP</h3>
-              <p>تعلم التوزيع التلقائي لعناوين الشبكة</p>
-            </div>
-            <span class="go">ابدأ الدرس ←</span>
-          </a>
+      const value = document.querySelector(
+        "[data-progress-value]"
+      );
+      if (value) {
+        value.textContent = percentage + "%";
+      }
 
-          <a class="lesson-card" data-lock="6" href="network-lesson-6.html">
-            <span class="lesson-icon">▦</span>
-            <div>
-              <small>الدرس السادس</small>
-              <h3>نموذج OSI وTCP/IP</h3>
-              <p>تعرف على طبقات الشبكات وكيف تنتقل البيانات بين الأجهزة</p>
-            </div>
-            <span class="go">ابدأ الدرس ←</span>
-          </a>
-
-        </div>
-
-        <p style="color:#a7bfd1;font-size:13px">قريبًا: مسارات أمن الشبكات، بايثون، والتحليل الأمني.</p>
-      </section>
-
-      <aside class="panel" id="progress">
-        <h2>تقدمك في المسار</h2>
-        <div class="progress-ring">
-          <span data-progress-value>0%</span>
-        </div>
-        <p style="text-align:center" data-progress-count>0 من 6 دروس مجتازة</p>
-        <div class="progress-track">
-          <div data-progress-bar></div>
-        </div>
-        <p style="color:#a9c7dc;font-size:13px">يُحفظ التقدم على هذا المتصفح فقط. اجتز كل اختبار بنسبة 80% لفتح الدرس التالي.</p>
-        <a class="drk-next" href="network-lesson.html">متابعة التعلم ←</a>
-      </aside>
-    </main>
-
-    <section class="about" id="about">
-      <div class="panel">
-        <h2>عن أكاديمية سايبر عرب</h2>
-        <p>مبادرة تعليمية باللغة العربية لتبسيط مفاهيم الشبكات والأمن السيبراني، مع شرح تدريجي واختبارات تساعد المتعلم على تقييم فهمه.</p>
-      </div>
-    </section>
-
-    <footer class="footer">
-      © 2026 Dr.K | CyberArab Academy · جميع الحقوق محفوظة
-    </footer>
-
-    <script src="academy.js" defer></script>
-  </body>
+      const bar = document.querySelector(
+        "[data-progress-bar]"
+      );
+      if (bar) {
+        bar.style.width = percentage + "%";
+      }
+    });
+  </script>
+</body>
 </html>
