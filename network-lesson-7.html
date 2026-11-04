@@ -389,6 +389,32 @@ traceroute 8.8.8.8</pre>
 })();
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const previousScore = Number(
+      localStorage.getItem("cyberarab_lesson6_score") || 0
+    );
+
+    if (previousScore < 16) {
+      document.querySelector("main").innerHTML = `
+        <section class="hero" style="text-align:center">
+          <h1>🔒 الدرس السابع مقفل</h1>
+          <p>
+            يجب اجتياز اختبار الدرس السادس بنسبة
+            80% على الأقل قبل الانتقال إلى هذا الدرس.
+          </p>
+          <a class="btn" href="network-lesson-6.html">
+            الانتقال إلى الدرس السادس
+          </a>
+          <a class="btn" href="network-course.html">
+            العودة إلى المسار
+          </a>
+        </section>
+      `;
+    }
+  });
+</script>
+
 <script src="academy.js" defer></script>
 </body>
 </html>
