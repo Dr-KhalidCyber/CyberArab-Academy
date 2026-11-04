@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="الدرس السادس من أساسيات الشبكات: شرح طبقات OSI وTCP/IP والتغليف وتحليل اتصال HTTPS واختبار تفاعلي من 10 أسئلة." name="description"/><title>الدرس السادس: نموذجا OSI وTCP/IP | CyberArab Academy</title><style>
+:root{--bg:#0d1728;--panel:#1b2b43;--panel2:#223650;--text:#f4f7fc;--muted:#b9c9dd;--gold:#f1b45c;--line:#40536d;--accent:#b13a70;--good:#5bcba6;--bad:#e48c9a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:18px/1.9 Tahoma,Arial,sans-serif}a{color:var(--gold)}header{background:#14243a;border-bottom:1px solid var(--line);padding:15px max(22px,calc((100vw - 1320px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}header strong{font-size:21px}nav a{margin-inline:8px;text-decoration:none;color:var(--text);font-size:15px}nav a:hover{color:var(--gold)}.layout{max-width:1380px;margin:26px auto;display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:30px;padding:0 22px}.main{min-width:0}.sidebar{position:sticky;top:16px;align-self:start;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px;max-height:calc(100vh - 32px);overflow:auto}.sidebar h2{font-size:20px;margin:0 0 12px}.sidebar a{display:block;color:#cbe2ff;text-decoration:none;margin:9px 0;font-size:15px}.sidebar a:hover{color:var(--gold)}.progress{height:11px;border-radius:12px;background:#41536d;margin:14px 0;overflow:hidden}.progress span{display:block;width:50%;height:100%;background:var(--gold)}.hero{padding:35px;border-radius:24px;background:linear-gradient(130deg,#203a59,#1b2b43);border:1px solid var(--line);margin-bottom:25px}.hero h1{font-size:clamp(27px,3.3vw,44px);margin:12px 0}.hero p{color:#f0f3fb}.pills{display:flex;gap:9px;flex-wrap:wrap}.pill{background:#324b69;border-radius:30px;padding:6px 14px;font-size:14px}.block{background:var(--panel);border:1px solid var(--line);border-radius:23px;padding:30px;margin:23px 0;scroll-margin-top:18px}.block h2{font-size:clamp(23px,2.3vw,31px);color:var(--gold);margin:0 0 20px}.block h3{color:#fff;margin:20px 0 8px}.block p{margin:13px 0}.diagram{background:#102035;border:1px solid #354f6e;border-radius:17px;padding:24px;margin:22px 0}.nodes{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap}.nodes div{border:2px solid var(--gold);border-radius:15px;background:#2b4360;padding:17px 26px;text-align:center;min-width:200px}.nodes small{color:#f4c98d}.nodes span{color:var(--good);font-weight:bold}.center{text-align:center}.note{border-right:4px solid var(--gold);background:#263c56;border-radius:10px;padding:16px;margin:20px 0}table{border-collapse:collapse;width:100%;margin:18px 0;font-size:16px}th,td{border:1px solid #49617e;padding:11px;text-align:right}th{background:#2d4664;color:var(--gold)}tr:nth-child(even){background:#223650}.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.steps div{border:1px solid #536b87;border-radius:13px;background:#253b56;padding:16px}.steps b{display:block;color:var(--gold)}.steps span{display:block}.flowline{display:grid;grid-template-columns:1fr 1.5fr 1fr;text-align:center;gap:8px;align-items:center;margin:8px 0}.flowline span{padding:6px;border:1px solid #49617e;border-radius:8px}.flowline span:nth-child(2){color:var(--gold);border:none}.timeline{display:flex;justify-content:space-between;gap:5px;border-top:4px solid var(--gold);padding-top:15px;font-size:14px}.timeline span{flex:1;text-align:center}.command{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0d1728;border:1px solid #466080;border-radius:11px;padding:10px 15px;margin:10px 0;overflow:auto}code{font-family:Consolas,monospace;color:#ffcd8a}.copy{border:1px solid #7a9ab8;background:#2e4a69;color:white;border-radius:9px;padding:5px 12px;cursor:pointer}.question{border:1px solid #4c6380;border-radius:15px;padding:20px;margin:15px 0;background:#192a40}.question h3{font-size:18px;margin:0 0 13px}.option{display:block;border:1px solid #3e5671;border-radius:10px;padding:10px 13px;margin:7px 0;cursor:pointer}.option:hover{background:#294361}.option:has(input:checked){background:#314d6e;border-color:var(--gold)}input[type=radio]{accent-color:var(--gold);margin-left:10px}.question.correct{border-color:var(--good)}.question.wrong{border-color:var(--bad)}.feedback{margin-top:13px;font-size:15px}.quiz-actions{display:flex;gap:10px;justify-content:flex-start;flex-wrap:wrap}button.primary,button.secondary{border:0;border-radius:12px;padding:12px 22px;color:white;font-weight:bold;font-size:17px;cursor:pointer}.primary{background:#a9386c}.secondary{background:#435e7b}.result{font-size:24px;font-weight:bold;margin-top:20px}.lesson-nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:32px 0}.lesson-nav a,.lesson-nav span{display:inline-block;background:#314b69;border-radius:30px;padding:9px 17px;text-decoration:none;color:var(--gold)}footer{text-align:center;color:#c1d3e9;padding:35px 10px}@media(max-width:950px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none;order:-1}.layout{display:flex;flex-direction:column}.block{padding:20px}.hero{padding:25px}}@media(max-width:600px){body{font-size:16px}.steps{grid-template-columns:1fr}.timeline{font-size:11px}.nodes div{min-width:145px}table{font-size:13px}th,td{padding:7px}}
+</style><link href="theme.css" rel="stylesheet"/>
+</head><body><div class="drk-top"><a class="drk-brand" href="index.html"><img alt="شعار Dr.K" src="drk-logo.webp"/><span><b>CyberArab Academy</b><small>أكاديمية سايبر عرب</small></span></a><nav class="drk-nav"><a href="index.html">⌂ الرئيسية</a><a href="index.html#courses">▤ الدورات</a><a href="index.html#progress">◉ تقدمي</a><a href="index.html#about">ⓘ عن الأكاديمية</a></nav></div><header><strong>🛡️ CyberArab Academy</strong><nav><a href="index.html">الرئيسية</a><a href="network-lesson-5.html">الدرس السابق: DHCP</a></nav></header><div class="layout"><main class="main">
+<section class="hero"><div class="pills"><span class="pill">مسار أساسيات الشبكات</span><span class="pill">الدرس 6 من 10</span><span class="pill">مبتدئ ← متوسط</span></div><h1>الدرس السادس: نموذجا OSI وTCP/IP</h1><p>افهم كيف تنتقل البيانات بين التطبيقات والأجهزة، وكيف تساعدنا الطبقات على تشخيص مشكلات الشبكة وفهم الهجمات.</p><div class="pills"><span class="pill">المدة: 70–100 دقيقة</span><span class="pill">10 أقسام</span><span class="pill">10 أسئلة</span></div></section>
+<section class="block" id="intro"><h2>1. لماذا نقسم الشبكات إلى طبقات؟</h2><p>تعمل الشبكات عبر مهام مختلفة: تطبيق يطلب صفحة، وبروتوكول نقل ينظم الاتصال، وعناوين تحدد وجهة الحزم، ووسيط فعلي يحمل الإشارات. تقسيم هذه المهام إلى <b>طبقات (Layers)</b> يجعل التصميم والفهم واستكشاف الأعطال أسهل.</p><div class="note">نموذج <b>OSI</b> مرجع تعليمي من سبع طبقات، أما <b>TCP/IP</b> فهو مجموعة بروتوكولات عملية يُشرح غالبًا بأربع طبقات. لا يعني ذلك أن كل بروتوكول يطابق طبقة واحدة بصورة صارمة.</div></section>
+<section class="block" id="osi"><h2>2. طبقات OSI السبع</h2><table><thead><tr><th>الرقم</th><th>الطبقة</th><th>وظيفتها</th><th>مثال تقريبي</th></tr></thead><tbody><tr><td>7</td><td>Application — التطبيق</td><td>خدمات الشبكة التي تستخدمها التطبيقات</td><td>HTTP, DNS</td></tr><tr><td>6</td><td>Presentation — العرض</td><td>تمثيل البيانات وترميزها وتشفيرها</td><td>ترميز النصوص، مفهوم التشفير</td></tr><tr><td>5</td><td>Session — الجلسة</td><td>إدارة الجلسات والتواصل بين التطبيقات</td><td>إدارة الجلسات كمفهوم</td></tr><tr><td>4</td><td>Transport — النقل</td><td>المنافذ والتسليم بين العمليات</td><td>TCP, UDP</td></tr><tr><td>3</td><td>Network — الشبكة</td><td>العنونة المنطقية والتوجيه</td><td>IPv4, IPv6</td></tr><tr><td>2</td><td>Data Link — ربط البيانات</td><td>الإطارات والتواصل على الوصلة المحلية</td><td>Ethernet, MAC</td></tr><tr><td>1</td><td>Physical — الفيزيائية</td><td>نقل البتات كإشارات</td><td>الألياف، الكابلات، الإشارات اللاسلكية</td></tr></tbody></table><p>تذكر الترتيب من الأعلى إلى الأسفل: تطبيق، عرض، جلسة، نقل، شبكة، ربط البيانات، فيزيائية.</p></section>
+<section class="block" id="tcpip"><h2>3. نموذج TCP/IP ومقارنته بـ OSI</h2><table><thead><tr><th>TCP/IP (أربع طبقات)</th><th>يقابل تقريبًا في OSI</th><th>أمثلة</th></tr></thead><tbody><tr><td>Application</td><td>7 و6 و5</td><td>HTTP, DNS, SMTP</td></tr><tr><td>Transport</td><td>4</td><td>TCP, UDP</td></tr><tr><td>Internet</td><td>3</td><td>IP, ICMP</td></tr><tr><td>Link / Network Access</td><td>2 و1</td><td>Ethernet, Wi-Fi</td></tr></tbody></table><div class="diagram"><div class="nodes"><div>📱 التطبيق<br/><small>HTTP / DNS</small></div><span>↓</span><div>🚚 النقل<br/><small>TCP / UDP</small></div><span>↓</span><div>🌐 الإنترنت<br/><small>IP</small></div><span>↓</span><div>🔌 الوصلة<br/><small>Ethernet / Wi-Fi</small></div></div></div><p>توجد مراجع تعرض TCP/IP بخمس طبقات بفصل الوصلة عن الطبقة الفيزيائية؛ الاختلاف هنا في طريقة العرض التعليمية.</p></section>
+<section class="block" id="encapsulation"><h2>4. التغليف Encapsulation</h2><p>عند إرسال البيانات، تضيف الطبقات معلومات تحكم إلى المحتوى، مثل منافذ النقل وعناوين IP ومعلومات إطار Ethernet. يسمى ذلك <b>التغليف</b>، ويُزال تدريجيًا عند الاستقبال (<b>Decapsulation</b>).</p><div class="steps"><div><b>Application Data</b><span>بيانات التطبيق مثل طلب HTTP.</span></div><div><b>TCP Segment / UDP Datagram</b><span>تُضاف معلومات النقل مثل المنافذ.</span></div><div><b>IP Packet</b><span>تُضاف عناوين IP للمصدر والوجهة.</span></div><div><b>Link Frame</b><span>تُضاف معلومات الوصلة المحلية لإرسال الإطار.</span></div></div><div class="note">التسميات تختلف بحسب البروتوكول؛ ليست كل حركة مرور TCP، وليست كل الوصلات Ethernet.</div></section>
+<section class="block" id="addresses"><h2>5. الفرق بين MAC وIP وPort</h2><table><tr><th>العنصر</th><th>ماذا يحدد؟</th><th>مثال</th></tr><tr><td>MAC Address</td><td>معرّف واجهة على الوصلة المحلية (في شبكات مثل Ethernet)</td><td dir="ltr">00:1A:2B:3C:4D:5E</td></tr><tr><td>IP Address</td><td>عنوان منطقي يُستخدم في التوجيه بين الشبكات</td><td dir="ltr">192.168.1.20</td></tr><tr><td>Port</td><td>خدمة أو عملية على الجهاز في TCP/UDP</td><td dir="ltr">443</td></tr></table><p>مثال: قد يتجه طلب متصفح إلى عنوان IP لخادم عبر منفذ 443، بينما يُرسل الإطار في كل وصلة محلية إلى عنوان MAC مناسب لتلك الوصلة.</p></section>
+<section class="block" id="example"><h2>6. مثال عملي: فتح موقع HTTPS</h2><ol><li>تكتب عنوان الموقع في المتصفح، وقد يحتاج المتصفح إلى DNS للحصول على عنوان IP.</li><li>ينشئ المتصفح اتصالًا مناسبًا؛ قد يكون <b>TCP + TLS</b> أو <b>QUIC فوق UDP</b> بحسب إصدار HTTP المستخدم.</li><li>تُرسل حزم IP نحو الوجهة عبر الموجّهات (Routers).</li><li>تُحمل الحزم داخل إطارات الوصلة المحلية مثل Wi-Fi أو Ethernet.</li><li>يفك الطرف المستقبِل التغليف ويمرر البيانات إلى التطبيق.</li></ol><div class="note">مهم: HTTPS لا يعني دائمًا TCP؛ فـ HTTP/3 يستخدم QUIC فوق UDP.</div></section>
+<section class="block" id="troubleshoot"><h2>7. استكشاف الأعطال حسب الطبقات</h2><table><tr><th>العرض</th><th>طبقة تفحصها أولًا</th><th>مثال فحص</th></tr><tr><td>الكابل مفصول أو Wi-Fi غير متصل</td><td>Physical / Link</td><td>حالة الواجهة والاتصال</td></tr><tr><td>عنوان IP أو بوابة غير صحيحين</td><td>Network</td><td>إعدادات IP ومسار التوجيه</td></tr><tr><td>خدمة لا تستجيب على منفذ معين</td><td>Transport / Application</td><td>المنفذ والخدمة والجدار الناري</td></tr><tr><td>اسم الموقع لا يُحل</td><td>Application (DNS)</td><td>استعلام DNS</td></tr></table><p>التصنيف يساعد في تنظيم التشخيص، لكنه ليس بديلًا عن الأدلة؛ قد تتداخل أسباب العطل عبر أكثر من طبقة.</p></section>
+<section class="block" id="lab"><h2>8. تطبيق عملي آمن</h2><p>الأوامر التالية للفحص فقط، ولا تغيّر إعدادات الشبكة. اختر ما يناسب نظامك.</p><h3>Windows</h3><div class="command"><code dir="ltr">ipconfig /all</code><button class="copy" data-copy="ipconfig /all">نسخ</button></div><div class="command"><code dir="ltr">tracert example.com</code><button class="copy" data-copy="tracert example.com">نسخ</button></div><h3>Linux</h3><div class="command"><code dir="ltr">ip address show</code><button class="copy" data-copy="ip address show">نسخ</button></div><div class="command"><code dir="ltr">ip route</code><button class="copy" data-copy="ip route">نسخ</button></div><h3>ماذا تستنتج؟</h3><ol><li>حدد عنوان IP الخاص بواجهة الشبكة.</li><li>حدد البوابة الافتراضية إن وجدت.</li><li>قارن بين مفهوم عنوان IP ومفهوم المنفذ.</li><li>على Windows، لاحظ أن <code>tracert</code> قد يعرض موجّهات على الطريق، لكن عدم ظهور بعض القفزات لا يعني بالضرورة وجود عطل.</li></ol></section>
+<section class="block" id="security"><h2>9. لماذا تهم الطبقات في الأمن السيبراني؟</h2><div class="steps"><div><b>Link Layer</b><span>مراقبة الشبكة المحلية وحماية المحولات من بعض الهجمات.</span></div><div><b>Network Layer</b><span>قواعد التوجيه والتحكم في المرور حسب عناوين IP.</span></div><div><b>Transport Layer</b><span>التحكم في المنافذ واتصالات TCP/UDP.</span></div><div><b>Application Layer</b><span>فحص طلبات الويب، والمصادقة، ومشكلات التطبيقات.</span></div></div><p>تساعد الطبقات محلل مركز العمليات الأمنية (SOC) على ربط مؤشرات مثل عنوان IP والمنفذ واسم النطاق ونوع البروتوكول لتكوين صورة أوضح عن الحدث.</p></section>
+<section class="block" id="quiz"><h2>10. اختبار الدرس — 10 أسئلة</h2><p>اختر إجابة واحدة لكل سؤال. <b>درجة النجاح 80% (8 من 10)</b> لفتح الدرس التالي عند نشره. يمكنك إعادة المحاولة.</p><div id="questions"></div><div class="quiz-actions"><button class="primary" id="grade" type="button">تصحيح الإجابات</button><button class="secondary" id="reset" type="button">إعادة المحاولة</button></div><div aria-live="polite" class="result" id="result"></div></section>
+<div class="lesson-nav"><a href="network-lesson-5.html">→ الدرس السابق: DHCP</a><span title="سيتم نشره لاحقًا">الدرس السابع: أجهزة الشبكات وSwitching (قريبًا) ←</span></div>
+</main><aside class="sidebar"><h2>📚 محتويات الدرس</h2><p>الدرس 6 من 10</p><div class="progress"><span style="width:60%"></span></div><a href="#intro">1. لماذا نستخدم الطبقات؟</a><a href="#osi">2. طبقات OSI السبع</a><a href="#tcpip">3. نموذج TCP/IP</a><a href="#encapsulation">4. التغليف Encapsulation</a><a href="#addresses">5. MAC وIP وPort</a><a href="#example">6. مثال HTTPS</a><a href="#troubleshoot">7. استكشاف الأعطال</a><a href="#lab">8. تطبيق عملي آمن</a><a href="#security">9. الطبقات والأمن السيبراني</a><a href="#quiz">10. اختبار الدرس</a></aside></div><footer>CyberArab Academy — محتوى تعليمي في الشبكات والأمن السيبراني</footer><script>// أسئلة الدرس السادس: كل سؤال [النص، الخيارات، رقم الإجابة، التفسير]
+const questions = [
+  [
+    "كم طبقة في نموذج OSI؟",
+    [
+      "4",
+      "5",
+      "7",
+      "8"
+    ],
+    2,
+    "نموذج OSI يتكون من سبع طبقات."
+  ],
+  [
+    "أي طبقة من OSI مسؤولة عن عناوين IP والتوجيه؟",
+    [
+      "Network",
+      "Presentation",
+      "Physical",
+      "Session"
+    ],
+    0,
+    "طبقة Network هي الطبقة الثالثة."
+  ],
+  [
+    "أي بروتوكول يُصنف عادة في طبقة النقل؟",
+    [
+      "IP",
+      "TCP",
+      "Ethernet",
+      "DNS"
+    ],
+    1,
+    "TCP وUDP بروتوكولا نقل."
+  ],
+  [
+    "ما معنى Encapsulation؟",
+    [
+      "حذف كل الترويسات",
+      "إضافة معلومات تحكم أثناء انتقال البيانات عبر الطبقات",
+      "تغيير عنوان الموقع",
+      "إيقاف الاتصال"
+    ],
+    1,
+    "تُضاف ترويسات أو معلومات خاصة بكل طبقة حسب البروتوكول."
+  ],
+  [
+    "أي عنصر يحدد الخدمة غالبًا داخل جهاز باستخدام TCP أو UDP؟",
+    [
+      "MAC Address",
+      "Port Number",
+      "Subnet Mask",
+      "SSID"
+    ],
+    1,
+    "رقم المنفذ يحدد نقطة نهاية الخدمة أو العملية."
+  ],
+  [
+    "كم طبقة في العرض الشائع ذي الأربع طبقات لنموذج TCP/IP؟",
+    [
+      "3",
+      "4",
+      "6",
+      "7"
+    ],
+    1,
+    "نستخدم هنا عرض TCP/IP بأربع طبقات."
+  ],
+  [
+    "أي طبقة تتعامل مع الإطارات على شبكة Ethernet المحلية؟",
+    [
+      "Data Link",
+      "Application",
+      "Session",
+      "Presentation"
+    ],
+    0,
+    "الإطارات من مفاهيم طبقة ربط البيانات."
+  ],
+  [
+    "أي عبارة أدق بشأن HTTPS الحديث؟",
+    [
+      "يعمل دائمًا عبر TCP فقط",
+      "قد يستخدم HTTP/3 بروتوكول QUIC فوق UDP",
+      "لا يستخدم IP",
+      "لا يحتاج إلى تشفير"
+    ],
+    1,
+    "HTTP/3 يستخدم QUIC فوق UDP."
+  ],
+  [
+    "ما الأمر الذي يعرض عناوين الواجهات في Linux؟",
+    [
+      "ip address show",
+      "tracert example.com",
+      "dir",
+      "whoami /all"
+    ],
+    0,
+    "يعرض ip address show عناوين الواجهات."
+  ],
+  [
+    "إذا لم يُحل اسم موقع إلى عنوان IP، ما الخدمة التي تفحصها غالبًا؟",
+    [
+      "DHCP فقط",
+      "DNS",
+      "Ethernet فقط",
+      "NTP"
+    ],
+    1,
+    "DNS مسؤولة عن حل أسماء النطاقات."
+  ]
+];
+const container = document.getElementById('questions');
+function renderQuiz() {
+  container.replaceChildren();
+  questions.forEach((question, index) => {
+    const card = document.createElement('div');
+    card.className = 'question';
+    card.id = 'q' + index;
+    const heading = document.createElement('h3');
+    heading.textContent = (index + 1) + '. ' + question[0];
+    card.appendChild(heading);
+    question[1].forEach((answer, optionIndex) => {
+      const label = document.createElement('label');
+      label.className = 'option';
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'q' + index;
+      radio.value = optionIndex;
+      label.append(radio, document.createTextNode(answer));
+      card.appendChild(label);
+    });
+    const feedback = document.createElement('div');
+    feedback.className = 'feedback';
+    card.appendChild(feedback);
+    container.appendChild(card);
+  });
+}
+renderQuiz();
+document.getElementById('grade').addEventListener('click', () => {
+  let score = 0;
+  let answered = 0;
+  questions.forEach((question, index) => {
+    const card = document.getElementById('q' + index);
+    const selected = card.querySelector('input:checked');
+    const feedback = card.querySelector('.feedback');
+    card.classList.remove('correct', 'wrong');
+    if (selected) answered++;
+    if (selected && Number(selected.value) === question[2]) {
+      score++;
+      card.classList.add('correct');
+      feedback.textContent = '✓ إجابة صحيحة. ' + question[3];
+    } else {
+      card.classList.add('wrong');
+      feedback.textContent = (selected ? '✗' : 'لم تُجب.') + ' الإجابة الصحيحة: ' + question[1][question[2]] + '. ' + question[3];
+    }
+  });
+  document.getElementById('result').textContent =
+    'النتيجة: ' + score + ' / ' + questions.length + ' (' + Math.round(score / questions.length * 100) + '%) — أجبت عن ' + answered + ' سؤالًا.';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'center'});
+});
+document.getElementById('reset').addEventListener('click', () => {
+  renderQuiz();
+  document.getElementById('result').textContent = '';
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+});
+document.querySelectorAll('.copy').forEach(button => button.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(button.dataset.copy);
+    button.textContent = 'تم النسخ';
+  } catch {
+    button.textContent = 'حدد الأمر وانسخه';
+  }
+}));</script><section class="drk-end"><span class="drk-status">✦ الدرجة المطلوبة للنجاح: 80% (8 من 10)</span><h2>تابع رحلتك التعليمية</h2><p>بعد اجتياز الاختبار، يمكنك الانتقال إلى الدرس التالي.</p><a class="drk-next" href="index.html#courses">العودة إلى الدورات ←</a></section><footer class="drk-footer">© 2026 Dr.K · CyberArab Academy</footer><script defer="" src="academy.js"></script></body></html>
