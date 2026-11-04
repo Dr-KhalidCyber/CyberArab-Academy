@@ -8,6 +8,14 @@
 </style>
 </head>
 <body>
+  <script>
+const score = Number(localStorage.getItem('cyberarab_lesson1_score'));
+
+if (!localStorage.getItem('cyberarab_lesson1_score') || score < 16) {
+  alert('🔒 الدرس الثاني مقفل. يجب اجتياز اختبار الدرس الأول بنسبة 80% على الأقل.');
+  window.location.replace('network-lesson.html');
+}
+</script>
 <header><strong>🛡️ CyberArab Academy</strong><nav><a href="index.html">الرئيسية</a> · <a href="network-lesson.html">الدرس السابق</a></nav></header>
 <div class="shell">
 <aside class="sidebar"><strong>📚 محتويات الدرس</strong><p class="small muted">الدرس 2 من 10</p><div class="progress"><span></span></div><div class="links"><a href="#intro">1. لماذا IP؟</a><a href="#versions">2. IPv4 وIPv6</a><a href="#binary">3. البتات والثنائي</a><a href="#ranges">4. عام وخاص</a><a href="#assignment">5. ثابت ومتغير</a><a href="#dhcp">6. DHCP وNAT</a><a href="#mask">7. Subnet Mask</a><a href="#subnet">8. Subnetting</a><a href="#lab">9. تطبيق عملي</a><a href="#quiz">10. اختبار 20 سؤالًا</a></div></aside>
