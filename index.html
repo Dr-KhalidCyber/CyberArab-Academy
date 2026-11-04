@@ -4,323 +4,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>أكاديمية سايبر عرب</title>
+  <title>CyberArab Academy | أكاديمية سايبر عرب</title>
   <style>
-    
-nav {
-  background: #101827;
-  border-bottom: 1px solid #34445c;
-  padding: 18px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-nav .logo {
-  color: #e9b96e;
-  font-size: 23px;
-  font-weight: bold;
-}
-
-nav .links {
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-nav a:hover {
-  color: #e9b96e;
-}
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: #101827;
+      background: #020b17;
       color: white;
-      text-align: center;
+      font-family: Tahoma, Arial, sans-serif;
     }
-    header {
-      background: #19263a;
-      padding: 22px;
-      color: #ffffff;
+    .hero {
+      position: relative;
+      width: 100%;
+      max-width: 1648px;
+      margin: auto;
     }
-    h1 { color: #e9b96e; }
-    main { padding: 35px 16px; }
-  
-.courses {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  max-width: 1100px;
-  margin: 30px auto;
-}
-    .course {
-      background: #24344a;
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .hotspot {
+      position: absolute;
+      display: block;
+      cursor: pointer;
       border-radius: 12px;
-      padding: 25px;
-      width: 230px;
+    }
+    .hotspot:focus-visible {
+      outline: 3px solid #00d9ff;
+    }
+    .start {
+      left: 77.8%;
+      top: 42.7%;
+      width: 16.8%;
+      height: 7.1%;
+    }
+    .courses {
+      left: 80%;
+      top: 2%;
+      width: 9%;
+      height: 9%;
+    }
+    .paths {
+      left: 68%;
+      top: 2%;
+      width: 11%;
+      height: 9%;
+    }
+    .library {
+      left: 60%;
+      top: 2%;
+      width: 8%;
+      height: 9%;
+    }
+    .content {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 24px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card {
+      background: #0b1d33;
+      border: 1px solid #32618a;
+      border-radius: 16px;
+      padding: 24px;
     }
     button {
-      background: #8b2948;
+      background: #0068cb;
       color: white;
-      border: 0;
-      border-radius: 8px;
-      padding: 12px 22px;
+      border: 1px solid #00cfff;
+      padding: 12px 20px;
+      border-radius: 9px;
       cursor: pointer;
     }
-    button:hover { background: #b13b61; }
-    #result { margin-top: 20px; }
-    footer { padding: 30px; color: #aaa; }
-    
-.start-btn {
-  display: inline-block;
-  margin: 25px 0 35px;
-  padding: 15px 35px;
-  background: #e9b96e;
-  color: #101827;
-  text-decoration: none;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.start-btn:hover {
-  background: #ffd28a;
-  transform: translateY(-3px);
-}
-.course {
-  position: relative;
-  width: auto;
-  max-width: none;
-  margin: 0;
-  box-sizing: border-box;
-  height: auto;
-  min-height: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
+    @media (max-width: 700px) {
+      .cards { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  
-
-<nav>
-  <div class="logo">🛡️ CyberArab Academy</div>
-
-  <div class="links">
-    <a href="#">الرئيسية</a>
-    <a href="#courses">الدورات</a>
-    <a href="#about">من نحن</a>
-  </div>
-</nav>
-
-
-  <header>
-    <h2>🛡️ CyberArab Academy</h2>
-    <p>تعلم الأمن السيبراني باللغة العربية</p>
-  </header>
-
   <main>
-    <h1>ابدأ رحلتك في الأمن السيبراني</h1>
-    <p>دروس عربية، اختبارات تفاعلية، وتطبيقات عملية.</p>
-    
-<a href="#courses" class="start-btn">
-  ابدأ التعلم مجانًا 🚀
-</a>
-
-
-    <h2>الدورات التعليمية</h2>
-
-<section id="courses" class="courses">
-      <div class="course">
-        <h3>🌐 أساسيات الشبكات</h3>
-        <p>تعلم IP و DNS وبروتوكولات الشبكات.</p>
-
-<a href="network-lesson.html">
-  <button>استكشف الدورة</button>
-</a>
-        
-<div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;background:#172b45;padding:15px;border-radius:12px;">
-<a href="network-lesson.html" style="color:#7dd3fc;text-decoration:none;">📘 الدرس الأول: مقدمة الشبكات</a>
-<a href="network-lesson-2.html"style="color:#7dd3fc;text-decoration:none;">📘 الدرس الثاني: عناوين IP</a>
-<a href="network-lesson-3.html" style="color:#7dd3fc;text-decoration:none;">📘 الدرس الثالث: DNS</a>
-<a href="network-lesson-4.html" style="color:#7dd3fc;text-decoration:none;">📘 الدرس الرابع: TCP و UDP</a>
-<a href="network-lesson-5.html" style="color:#7dd3fc;text-decoration:none;">📘 الدرس الخامس: DHCP</a>
-</div>
-
-</div>
-      <div class="course">
-        <h3>🔐 الأمن السيبراني</h3>
-        <p>تعرف على التهديدات وطرق الحماية.</p>
-        <button onclick="showCourse('الأمن السيبراني')">استكشف الدورة</button>
-      </div>
-
-      <div class="course">
-        <h3>🐍 Python</h3>
-        <p>تعلم البرمجة لبناء أدوات أمنية.</p>
-        <button onclick="showCourse('Python')">استكشف الدورة</button>
-      </div>
-  
-
-
+    <section class="hero" aria-label="واجهة أكاديمية سايبر عرب">
+      <img src="academy-design.png" alt="CyberArab Academy">
+      <a class="hotspot start" href="#courses" aria-label="ابدأ التعلم الآن"></a>
+      <a class="hotspot courses" href="#courses" aria-label="الدورات"></a>
+      <a class="hotspot paths" href="#courses" aria-label="مساري التعليمي"></a>
+      <a class="hotspot library" href="#library" aria-label="المكتبة"></a>
     </section>
 
-    <h2>اختبر معلوماتك</h2>
-    <p>ما وظيفة جدار الحماية Firewall؟</p>
-    <button onclick="checkAnswer(false)">تسريع الإنترنت</button>
-    <button onclick="checkAnswer(true)">فلترة حركة الشبكة</button>
-    <p id="result" aria-live="polite"></p>
-    
-<section id="lesson" hidden
-  style="background:#24344b; padding:30px;
-  border-radius:15px; margin:30px auto;
-  max-width:800px; text-align:right;">
+    <section class="content" id="courses">
+      <h1>المسارات التعليمية</h1>
+      <div class="cards">
+        <article class="card">
+          <h2>أساسيات الشبكات</h2>
+          <p>تعلم الشبكات والبروتوكولات وعناوين IP.</p>
+          <button onclick="openCourse('network')">عرض المسار</button>
+        </article>
+        <article class="card">
+          <h2>بايثون للمبتدئين</h2>
+          <p>تعلم البرمجة بلغة Python خطوة بخطوة.</p>
+          <button onclick="openCourse('python')">عرض المسار</button>
+        </article>
+        <article class="card">
+          <h2>أساسيات الأمن السيبراني</h2>
+          <p>تعلم حماية الأنظمة والشبكات من التهديدات.</p>
+          <button onclick="openCourse('cyber')">عرض المسار</button>
+        </article>
+      </div>
+      <div id="lessons" aria-live="polite"></div>
+    </section>
 
-  <h2>🌐 الدرس الأول: ما هي الشبكات؟</h2>
-
-  <p>
-    الشبكة هي مجموعة أجهزة متصلة ببعضها
-    لتبادل البيانات والموارد.
-  </p>
-
-  <h3>مثال عملي</h3>
-  <p>
-    عندما يتصل هاتفك وجهاز الكمبيوتر
-    بنفس شبكة Wi-Fi، يصبحان جزءاً
-    من شبكة محلية LAN.
-  </p>
-
-  <h3>🧠 اختبار سريع</h3>
-  <p>ما وظيفة عنوان IP؟</p>
-
-  <button onclick="checkLessonAnswer(false)">
-    تشفير الملفات
-  </button>
-
-  <button onclick="checkLessonAnswer(true)">
-    تحديد عنوان الجهاز على الشبكة
-  </button>
-
-  <button onclick="checkLessonAnswer(false)">
-    زيادة سرعة المعالج
-  </button>
-
-  <p id="lesson-result" aria-live="polite"></p>
-  
-<button type="button" onclick="showNextLesson()" style="background:#e9b96e;color:#101827;font-size:18px;margin-top:20px;padding:14px 25px;border-radius:10px;">
-  الدرس التالي: عنوان IP ←
-</button>
-
-
-</section>
-    
-<section id="lesson2" hidden
-  style="background:#24344b;padding:30px;
-  border-radius:15px;margin:30px auto;
-  max-width:800px;text-align:right;">
-
-  <h2>🌐 الدرس الثاني: ما هو عنوان IP؟</h2>
-
-  <p>
-    عنوان IP هو عنوان رقمي يُستخدم
-    للتعرف على الأجهزة والتواصل معها عبر الشبكة.
-  </p>
-
-  <h3>مثال عملي</h3>
-  <p>
-    192.168.1.10
-    مثال على عنوان IPv4 خاص يُستخدم داخل الشبكات المحلية.
-  </p>
-
-  <h3>🧠 اختبار سريع</h3>
-  <p>ما وظيفة عنوان IP؟</p>
-
-  <button onclick="checkIPAnswer(true)">
-    تحديد عنوان الجهاز على الشبكة
-  </button>
-
-  <button onclick="checkIPAnswer(false)">
-    زيادة سرعة الإنترنت
-  </button>
-
-  <p id="ip-result" aria-live="polite"></p>
-</section>
-
-
+    <section class="content" id="library">
+      <h2>المكتبة التعليمية</h2>
+      <p>سيتم ربط المكتبة بالمراجع التعليمية.</p>
+    </section>
   </main>
 
-  <footer>© 2026 CyberArab Academy</footer>
-
   <script>
-  
-function showCourse(name) {
-  if (name === "الشبكات") {
-    document.getElementById("lesson").hidden = false;
-    document.getElementById("lesson").scrollIntoView({
-      behavior: "smooth"
-    });
-  } else {
-    alert("قريباً سنضيف دروس دورة " + name);
-  }
-}
+    const courses = {
+      network: "أساسيات الشبكات",
+      python: "بايثون للمبتدئين",
+      cyber: "أساسيات الأمن السيبراني"
+    };
 
+    function openCourse(id) {
+      const container = document.getElementById("lessons");
+      container.replaceChildren();
+      const title = document.createElement("h2");
+      title.textContent = courses[id];
+      container.appendChild(title);
 
-    function checkAnswer(correct) {
-      const result = document.getElementById("result");
-      result.textContent = correct
-        ? "✅ إجابة صحيحة! جدار الحماية يفلتر حركة الشبكة."
-        : "❌ حاول مرة أخرى.";
+      for (let i = 1; i <= 10; i++) {
+        const p = document.createElement("p");
+        p.textContent = `الدرس ${i} — سيتم إضافة المحتوى والاختبار`;
+        container.appendChild(p);
+      }
+      container.scrollIntoView({ behavior: "smooth" });
     }
-    
-function checkLessonAnswer(correct) {
-  const result = document.getElementById("lesson-result");
-
-  if (correct) {
-    result.textContent = "✅ ممتاز! إجابة صحيحة.";
-    result.style.color = "#4ade80";
-  } else {
-    result.textContent = "❌ حاول مرة أخرى.";
-    result.style.color = "#f87171";
-  }
-}
-
-    
-function showNextLesson() {
-  const lesson2 = document.getElementById("lesson2");
-
-  if (lesson2) {
-    lesson2.hidden = false;
-    lesson2.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-}
-
-function checkIPAnswer(correct) {
-  const result = document.getElementById("ip-result");
-
-  if (correct) {
-    result.textContent = "✅ ممتاز! إجابة صحيحة.";
-    result.style.color = "#4ade80";
-  } else {
-    result.textContent = "❌ حاول مرة أخرى.";
-    result.style.color = "#f87171";
-  }
-}
-
   </script>
 </body>
 </html>
