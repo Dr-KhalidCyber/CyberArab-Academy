@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="الدرس السابع: التوجيه Routing - أكاديمية سايبر عرب">
+<title>الدرس السابع | Routing | CyberArab Academy</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071323;color:#eef8ff;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+header{max-width:1250px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+header img{width:145px;height:auto}
+a{color:#6bdaff}
+header a{text-decoration:none;font-weight:bold}
+main{max-width:1100px;margin:25px auto;padding:0 20px}
+.hero,.section,.quiz,.nav-box{background:linear-gradient(140deg,#0e2944,#071a2e);border:1px solid #295d86;border-radius:18px;padding:27px;margin-bottom:22px}
+.hero{background:linear-gradient(120deg,#123b59,#071323)}
+.tag{display:inline-block;color:#6bdaff;background:#0b2942;padding:5px 14px;border-radius:25px;font-size:13px}
+h1{font-size:clamp(28px,4vw,43px);line-height:1.5;margin:12px 0}
+h2{color:#75d9ff;font-size:23px;margin:0 0 15px}
+h3{color:#c3eaff}
+p,li{color:#d1e1ef}
+ul,ol{padding-right:25px}
+strong{color:#fff}
+.example{background:#081c30;border-right:4px solid #17d6ff;padding:16px;border-radius:9px;margin:15px 0}
+.warning{background:#302318;border-right:4px solid #ffbd69;padding:15px;border-radius:9px;margin:15px 0}
+pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;background:#06111e;border:1px solid #2c536e;padding:18px;border-radius:10px;color:#b9f2ff;font-size:14px;line-height:1.7}
+code{direction:ltr;unicode-bidi:isolate;color:#91e8ff}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:14px}
+th,td{border:1px solid #315775;padding:12px;text-align:right}
+th{background:#123d5d}
+.table-wrap{overflow-x:auto}
+.question{background:#0b2035;border:1px solid #315775;padding:18px;border-radius:13px;margin:16px 0}
+.question h3{font-size:17px;margin:0 0 12px}
+.question label{display:block;padding:10px;margin:7px 0;border:1px solid #315775;border-radius:9px;cursor:pointer}
+.question label:hover{background:#16405f}
+.question input{margin-left:9px;accent-color:#17c9ff}
+button,.btn{background:linear-gradient(120deg,#087ac5,#03b9fa);border:0;color:white;font-weight:bold;border-radius:10px;padding:13px 24px;cursor:pointer;font-size:15px;text-decoration:none;display:inline-block;margin:5px}
+button:hover,.btn:hover{filter:brightness(1.12)}
+#result{margin-top:18px;padding:18px;border-radius:12px;background:#0b2035;display:none}
+#result.success{border:1px solid #32ca9c}
+#result.failure{border:1px solid #ffbd69}
+.nav-box{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer{text-align:center;color:#a4bfd4;padding:25px}
+@media(max-width:650px){.section,.quiz,.hero{padding:19px}table{font-size:12px}}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="drk-logo.webp" alt="شعار أكاديمية سايبر عرب">
+  </a>
+  <a href="network-course.html">← مسار أساسيات الشبكات</a>
+</header>
+
+<main>
+
+<section class="hero">
+  <span class="tag">مسار أساسيات الشبكات · الدرس 7 من 10</span>
+  <h1>🌐 التوجيه في الشبكات (Routing)</h1>
+  <p>كيف تعرف حزم البيانات الطريق المناسب للوصول إلى شبكات أخرى؟ وكيف يعمل الموجّه Router، وما دور جدول التوجيه والبوابة الافتراضية؟</p>
+  <p><strong>المستوى:</strong> مبتدئ إلى متوسط · <strong>الاختبار:</strong> 10 أسئلة · <strong>النجاح:</strong> 80%</p>
+</section>
+
+<section class="section">
+<h2>1. ما المقصود بالتوجيه Routing؟</h2>
+<p>التوجيه هو عملية اختيار المسار الذي تسلكه حزمة البيانات للانتقال بين الشبكات المختلفة. الجهاز المسؤول عادة عن هذه العملية هو <strong>الموجّه Router</strong>.</p>
+<p>داخل الشبكة المحلية يمكن للأجهزة التواصل مباشرة أو عبر المحوّل Switch. لكن عندما تريد الوصول إلى شبكة أخرى، تحتاج غالبًا إلى موجّه.</p>
+<div class="example">
+<strong>مثال:</strong> جهازك عنوانه 192.168.1.10 ويريد الوصول إلى خادم عنوانه 8.8.8.8. لأن الخادم خارج شبكتك المحلية، يرسل جهازك الحزمة إلى الموجّه ليواصل توجيهها.
+</div>
+</section>
+
+<section class="section">
+<h2>2. الفرق بين Router وSwitch</h2>
+<div class="table-wrap">
+<table>
+<tr><th>المقارنة</th><th>Switch</th><th>Router</th></tr>
+<tr><td>المهمة</td><td>ربط الأجهزة داخل شبكة محلية</td><td>ربط الشبكات المختلفة</td></tr>
+<tr><td>المعلومات المستخدمة عادة</td><td>عناوين MAC</td><td>عناوين IP</td></tr>
+<tr><td>طبقة OSI التقليدية</td><td>الثانية</td><td>الثالثة</td></tr>
+<tr><td>مثال</td><td>ربط حواسيب المكتب</td><td>ربط شبكة المكتب بالإنترنت</td></tr>
+</table>
+</div>
+<p>بعض المحولات المتقدمة تعمل أيضًا في الطبقة الثالثة وتستطيع تنفيذ التوجيه، لذلك المقارنة السابقة توضح الوظيفة التقليدية لكل جهاز.</p>
+</section>
+
+<section class="section">
+<h2>3. ما هي البوابة الافتراضية Default Gateway؟</h2>
+<p>البوابة الافتراضية هي عنوان الموجّه الذي يستخدمه جهازك عادة لإرسال البيانات إلى الوجهات التي لا يعرف لها مسارًا أكثر تحديدًا.</p>
+<div class="example">
+<strong>مثال إعدادات جهاز:</strong>
+<pre>IP Address:      192.168.1.10
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.1.1</pre>
+<p>عندما يطلب الجهاز موقعًا خارج الشبكة المحلية، يرسل الحزمة إلى 192.168.1.1، وهو عنوان البوابة الافتراضية في هذا المثال.</p>
+</div>
+<p>مهم: البوابة الافتراضية ليست بالضرورة عنوان 192.168.1.1؛ فهي تختلف بحسب تصميم الشبكة.</p>
+</section>
+
+<section class="section">
+<h2>4. كيف يعرف الجهاز أن الوجهة خارج الشبكة؟</h2>
+<p>يستخدم الجهاز عنوان IP وقناع الشبكة Subnet Mask لتحديد الشبكة التي ينتمي إليها.</p>
+<div class="example">
+<pre>Computer: 192.168.1.10/24
+Target A: 192.168.1.50
+Target B: 192.168.2.20</pre>
+<p>الهدف A ضمن الشبكة 192.168.1.0/24، لذلك يمكن الوصول إليه محليًا. أما الهدف B فهو في شبكة مختلفة، ويحتاج إلى مسار عبر موجّه.</p>
+</div>
+<p>الرمز /24 يعني أن أول 24 بت من العنوان مخصصة لجزء الشبكة، وهو يعادل القناع 255.255.255.0.</p>
+</section>
+
+<section class="section">
+<h2>5. جدول التوجيه Routing Table</h2>
+<p>جدول التوجيه هو مجموعة قواعد يستخدمها الجهاز أو الموجّه لتحديد الخطوة التالية لإرسال الحزمة.</p>
+<p>قد يحتوي الجدول على شبكة الوجهة، والبوابة التالية Next Hop، والواجهة Interface، ومعلومات إضافية مثل Metric.</p>
+<div class="table-wrap">
+<table>
+<tr><th>Destination</th><th>Next Hop</th><th>المعنى</th></tr>
+<tr><td>192.168.1.0/24</td><td>On-link</td><td>شبكة متصلة مباشرة</td></tr>
+<tr><td>10.0.0.0/8</td><td>192.168.1.254</td><td>شبكة عبر موجّه آخر</td></tr>
+<tr><td>0.0.0.0/0</td><td>192.168.1.1</td><td>المسار الافتراضي</td></tr>
+</table>
+</div>
+<p>المسار <code>0.0.0.0/0</code> يطابق أي عنوان IPv4، ويُستخدم إذا لم يوجد مسار أكثر تحديدًا.</p>
+</section>
+
+<section class="section">
+<h2>6. كيف يختار Router أفضل مسار؟</h2>
+<p>من أهم قواعد اختيار المسار قاعدة <strong>Longest Prefix Match</strong>، أي تفضيل المسار الذي يطابق أكبر عدد من البتات في عنوان الوجهة.</p>
+<div class="example">
+<p>إذا كان جدول التوجيه يحتوي على:</p>
+<pre>10.0.0.0/8       via Router A
+10.10.0.0/16     via Router B
+10.10.5.0/24     via Router C</pre>
+<p>وكان عنوان الوجهة 10.10.5.20، فالمسار الأكثر تحديدًا هو 10.10.5.0/24 عبر Router C.</p>
+</div>
+<p>عندما تتساوى درجة التحديد، قد تدخل عوامل أخرى مثل مصدر المسار والتكلفة Metric في اختيار المسار وفق نظام التشغيل أو بروتوكول التوجيه.</p>
+</section>
+
+<section class="section">
+<h2>7. التوجيه الثابت Static Routing</h2>
+<p>في التوجيه الثابت يضيف مسؤول الشبكة المسارات يدويًا. يناسب هذا الأسلوب الشبكات الصغيرة أو المسارات التي لا تتغير كثيرًا.</p>
+<div class="example">
+<strong>مثال Cisco IOS:</strong>
+<pre>ip route 10.20.0.0 255.255.255.0 192.168.1.2</pre>
+<p>هذا الأمر يوجّه الحزم المتجهة إلى 10.20.0.0/24 نحو الموجّه التالي 192.168.1.2.</p>
+</div>
+<p><strong>المزايا:</strong> بسيط ويمكن التحكم فيه بدقة.</p>
+<p><strong>العيوب:</strong> يحتاج إلى تحديث يدوي عندما تتغير بنية الشبكة.</p>
+</section>
+
+<section class="section">
+<h2>8. التوجيه الديناميكي Dynamic Routing</h2>
+<p>في التوجيه الديناميكي تتبادل الموجّهات معلومات الوصول إلى الشبكات باستخدام بروتوكولات توجيه.</p>
+<div class="table-wrap">
+<table>
+<tr><th>البروتوكول</th><th>الفكرة الأساسية</th></tr>
+<tr><td>RIP</td><td>يستخدم عدد القفزات Hop Count كمقياس</td></tr>
+<tr><td>OSPF</td><td>بروتوكول Link-State يستخدم تكلفة المسار</td></tr>
+<tr><td>BGP</td><td>يستخدم لتبادل معلومات الوصول بين الأنظمة المستقلة والسياسات المرتبطة بها</td></tr>
+</table>
+</div>
+<p>تُستخدم هذه البروتوكولات في سيناريوهات مختلفة، ولا يُعد أحدها الأفضل في كل الحالات.</p>
+</section>
+
+<section class="section">
+<h2>9. ماذا يحدث عندما تفتح موقعًا؟</h2>
+<ol>
+<li>يكتب المستخدم عنوان الموقع في المتصفح.</li>
+<li>يحصل الجهاز على عنوان IP للموقع، غالبًا باستخدام DNS.</li>
+<li>يفحص الجهاز جدول التوجيه لتحديد كيفية إرسال الحزمة.</li>
+<li>إذا كانت الوجهة خارج الشبكة المحلية، يرسل الحزمة إلى الموجّه المناسب.</li>
+<li>تفحص الموجّهات المتتابعة عناوين الوجهة وتختار خطوات التوجيه التالية.</li>
+<li>تصل الحزمة إلى الشبكة المستهدفة إذا كانت المسارات متاحة والسياسات تسمح بذلك.</li>
+<li>تعود حزم الاستجابة عبر مسار قد يكون مختلفًا عن مسار الذهاب.</li>
+</ol>
+<div class="warning">التوجيه لا يضمن وصول البيانات دائمًا. فقد تمنع الجدران النارية المرور، أو تنقطع الوصلات، أو لا يوجد مسار مناسب.</div>
+</section>
+
+<section class="section">
+<h2>10. تطبيق عملي: اكتشاف المسار</h2>
+<p>يمكنك استخدام أدوات النظام لمشاهدة معلومات الشبكة وفحص مسار الوصول إلى وجهة.</p>
+<h3>على Windows</h3>
+<pre>ipconfig
+route print
+tracert 8.8.8.8</pre>
+<h3>على Linux</h3>
+<pre>ip addr
+ip route
+traceroute 8.8.8.8</pre>
+<p>قد تحتاج إلى تثبيت أداة traceroute على بعض توزيعات Linux.</p>
+<div class="example">
+<strong>تمرين عملي:</strong>
+<ol>
+<li>اعرف عنوان IP الخاص بجهازك.</li>
+<li>حدد عنوان Default Gateway.</li>
+<li>اعرض جدول التوجيه وابحث عن المسار الافتراضي.</li>
+<li>نفّذ Traceroute إلى 8.8.8.8 ولاحظ القفزات.</li>
+<li>فسّر لماذا قد تظهر علامة النجمة * بدل استجابة إحدى القفزات.</li>
+</ol>
+</div>
+<p>ظهور علامة النجمة لا يعني بالضرورة وجود عطل؛ فقد تمنع بعض الموجّهات رسائل الفحص أو تحد من الرد عليها.</p>
+</section>
+
+<section class="quiz">
+<h2>📝 اختبار الدرس السابع</h2>
+<p>اختر إجابة واحدة لكل سؤال. يجب الحصول على 8 إجابات صحيحة من أصل 10 للنجاح.</p>
+
+<form id="quiz-form">
+
+<div class="question">
+<h3>1. ما المهمة الأساسية للتوجيه Routing؟</h3>
+<label><input type="radio" name="q1" value="a"> تخزين الملفات</label>
+<label><input type="radio" name="q1" value="b"> اختيار مسار الحزم بين الشبكات</label>
+<label><input type="radio" name="q1" value="c"> تشفير كلمات المرور</label>
+<label><input type="radio" name="q1" value="d"> عرض صفحات الويب</label>
+</div>
+
+<div class="question">
+<h3>2. ما الجهاز المرتبط تقليديًا بتوجيه الحزم بين الشبكات؟</h3>
+<label><input type="radio" name="q2" value="a"> Router</label>
+<label><input type="radio" name="q2" value="b"> Monitor</label>
+<label><input type="radio" name="q2" value="c"> Keyboard</label>
+<label><input type="radio" name="q2" value="d"> Printer</label>
+</div>
+
+<div class="question">
+<h3>3. ما وظيفة Default Gateway؟</h3>
+<label><input type="radio" name="q3" value="a"> حذف بيانات DNS</label>
+<label><input type="radio" name="q3" value="b"> تشغيل التطبيقات</label>
+<label><input type="radio" name="q3" value="c"> إرسال الحزم التي لا يوجد لها مسار أكثر تحديدًا</label>
+<label><input type="radio" name="q3" value="d"> زيادة مساحة التخزين</label>
+</div>
+
+<div class="question">
+<h3>4. أي عنوان يمثل المسار الافتراضي في IPv4؟</h3>
+<label><input type="radio" name="q4" value="a"> 127.0.0.1/8</label>
+<label><input type="radio" name="q4" value="b"> 255.255.255.255/32</label>
+<label><input type="radio" name="q4" value="c"> 192.168.1.0/24</label>
+<label><input type="radio" name="q4" value="d"> 0.0.0.0/0</label>
+</div>
+
+<div class="question">
+<h3>5. أي مسار أكثر تحديدًا للوجهة 10.10.5.20؟</h3>
+<label><input type="radio" name="q5" value="a"> 10.0.0.0/8</label>
+<label><input type="radio" name="q5" value="b"> 10.10.5.0/24</label>
+<label><input type="radio" name="q5" value="c"> 0.0.0.0/0</label>
+<label><input type="radio" name="q5" value="d"> 10.10.0.0/16</label>
+</div>
+
+<div class="question">
+<h3>6. ما المقصود بالتوجيه الثابت Static Routing؟</h3>
+<label><input type="radio" name="q6" value="a"> إضافة المسارات يدويًا</label>
+<label><input type="radio" name="q6" value="b"> حذف جدول التوجيه</label>
+<label><input type="radio" name="q6" value="c"> توزيع عناوين IP تلقائيًا</label>
+<label><input type="radio" name="q6" value="d"> ترجمة أسماء النطاقات</label>
+</div>
+
+<div class="question">
+<h3>7. أي بروتوكول يُعد من بروتوكولات التوجيه الديناميكي؟</h3>
+<label><input type="radio" name="q7" value="a"> HTTP</label>
+<label><input type="radio" name="q7" value="b"> DHCP</label>
+<label><input type="radio" name="q7" value="c"> OSPF</label>
+<label><input type="radio" name="q7" value="d"> FTP</label>
+</div>
+
+<div class="question">
+<h3>8. ما المقياس الأساسي الذي يستخدمه RIP؟</h3>
+<label><input type="radio" name="q8" value="a"> حجم الشاشة</label>
+<label><input type="radio" name="q8" value="b"> عدد القفزات</label>
+<label><input type="radio" name="q8" value="c"> حجم الملف</label>
+<label><input type="radio" name="q8" value="d"> سرعة المعالج</label>
+</div>
+
+<div class="question">
+<h3>9. ما الأمر المستخدم في Windows لتتبع المسار إلى وجهة؟</h3>
+<label><input type="radio" name="q9" value="a"> mkdir</label>
+<label><input type="radio" name="q9" value="b"> format</label>
+<label><input type="radio" name="q9" value="c"> copy</label>
+<label><input type="radio" name="q9" value="d"> tracert</label>
+</div>
+
+<div class="question">
+<h3>10. ما أحد أسباب ظهور * في نتائج Traceroute؟</h3>
+<label><input type="radio" name="q10" value="a"> الموجّه لم يرد على رسالة الفحص</label>
+<label><input type="radio" name="q10" value="b"> تغيير اسم الكمبيوتر</label>
+<label><input type="radio" name="q10" value="c"> انتهاء مساحة القرص</label>
+<label><input type="radio" name="q10" value="d"> تعطّل لوحة المفاتيح</label>
+</div>
+
+<button type="button" id="grade">تصحيح الاختبار</button>
+<button type="reset" id="retry">إعادة المحاولة</button>
+
+</form>
+
+<div id="result" aria-live="polite"></div>
+</section>
+
+<section class="nav-box">
+  <a class="btn" href="network-lesson-6.html">→ الدرس السابق</a>
+  <a class="btn" href="network-course.html">العودة لمسار الشبكات</a>
+  <span id="next-lesson">الدرس الثامن: قريبًا 🔒</span>
+</section>
+
+</main>
+
+<footer>
+© 2026 Dr.K | CyberArab Academy · جميع الحقوق محفوظة
+</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  const answers = [
+    "b","a","c","d","b",
+    "a","c","b","d","a"
+  ];
+
+  const form = document.getElementById("quiz-form");
+  const result = document.getElementById("result");
+  const gradeButton = document.getElementById("grade");
+  const retryButton = document.getElementById("retry");
+
+  const key = "cyberarab_lesson7_score";
+
+  function savedScore() {
+    const value = localStorage.getItem(key);
+    return value === null ? 0 : Number(value);
+  }
+
+  function grade() {
+    let correct = 0;
+    let answered = 0;
+
+    answers.forEach((answer, index) => {
+      const selected = form.querySelector(
+        `input[name="q${index + 1}"]:checked`
+      );
+
+      if (selected) {
+        answered++;
+
+        if (selected.value === answer) {
+          correct++;
+        }
+      }
+    });
+
+    if (answered !== answers.length) {
+      alert("الرجاء الإجابة عن جميع الأسئلة قبل التصحيح.");
+      return;
+    }
+
+    const passed = correct >= 8;
+    const normalized = correct * 2;
+
+    localStorage.setItem(
+      key,
+      String(Math.max(savedScore(), normalized))
+    );
+
+    result.style.display = "block";
+    result.className = passed ? "success" : "failure";
+
+    result.textContent =
+      "النتيجة: " + correct + " / 10 — " +
+      (passed
+        ? "🎉 ممتاز! اجتزت الاختبار بنسبة " +
+          (correct * 10) + "%."
+        : "تحتاج إلى 80% للنجاح. راجع الدرس ثم أعد المحاولة.");
+
+    result.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+
+  gradeButton.addEventListener("click", grade);
+
+  retryButton.addEventListener("click", () => {
+    result.style.display = "none";
+    result.textContent = "";
+    result.className = "";
+  });
+})();
+</script>
+
+<script src="academy.js" defer></script>
+</body>
+</html>
