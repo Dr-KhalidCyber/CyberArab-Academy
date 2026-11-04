@@ -1,0 +1,355 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="مسار أساسيات الشبكات في أكاديمية سايبر عرب">
+  <title>أساسيات الشبكات | CyberArab Academy</title>
+  <link rel="stylesheet" href="theme.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #071323;
+      color: #eef8ff;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .course-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      max-width: 1450px;
+      margin: auto;
+      padding: 15px 25px;
+      border-bottom: 1px solid #164a70;
+    }
+
+    .course-header img {
+      width: 140px;
+      height: auto;
+    }
+
+    .course-header a {
+      color: #bceaff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1250px;
+      margin: 35px auto;
+      padding: 0 22px;
+    }
+
+    .hero {
+      padding: 35px;
+      border: 1px solid #295d86;
+      border-radius: 20px;
+      background: linear-gradient(140deg,#0e2944,#071a2e);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px,4vw,42px);
+      color: #fff;
+    }
+
+    .hero p {
+      color: #b4cbe0;
+      line-height: 1.9;
+    }
+
+    .course-tag {
+      display: inline-block;
+      padding: 7px 14px;
+      margin-bottom: 15px;
+      background: #123b59;
+      border-radius: 20px;
+      color: #6bdaff;
+      font-size: 13px;
+    }
+
+    .progress-panel {
+      margin-top: 25px;
+      padding: 22px;
+      background: #0c2035;
+      border: 1px solid #295d86;
+      border-radius: 15px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .progress-track {
+      height: 13px;
+      background: #243c55;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg,#067dce,#17d6ff);
+      transition: width .3s;
+    }
+
+    .section-title {
+      margin: 35px 0 20px;
+      font-size: 27px;
+    }
+
+    .lessons {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .lesson-card {
+      display: block;
+      min-height: 185px;
+      padding: 23px;
+      text-decoration: none;
+      color: #eef8ff;
+      background: linear-gradient(135deg,#1a354f,#0d2238);
+      border: 1px solid #426486;
+      border-radius: 16px;
+      transition: transform .2s,border-color .2s;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: #12c9ff;
+    }
+
+    .lesson-card small {
+      color: #86c9ef;
+    }
+
+    .lesson-card h3 {
+      margin: 12px 0;
+      font-size: 21px;
+    }
+
+    .lesson-card p {
+      color: #b6c9d8;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .lesson-status {
+      display: block;
+      margin-top: 18px;
+      color: #6cdbff;
+      font-weight: bold;
+    }
+
+    .lesson-card.locked {
+      opacity: .65;
+      cursor: not-allowed;
+    }
+
+    .lesson-card.locked .lesson-status {
+      color: #c6d4df;
+    }
+
+    .lesson-card.locked .lesson-status::before {
+      content: "🔒 ";
+    }
+
+    .lesson-card.coming-soon {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 35px;
+      color: #a4bfd4;
+    }
+
+    @media(max-width:700px) {
+      .lessons {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 22px;
+      }
+
+      .container {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="course-header">
+  <a href="index.html">
+    <img src="drk-logo.webp" alt="شعار الأكاديمية">
+  </a>
+  <a href="index.html">← العودة للرئيسية</a>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <span class="course-tag">المسار الأول · مستوى مبتدئ</span>
+
+    <h1>🌐 أساسيات الشبكات</h1>
+
+    <p>
+      تعلّم أساسيات شبكات الحاسب من الصفر،
+      بدءًا من مكونات الشبكات وعناوين IP،
+      وصولًا إلى البروتوكولات والتوجيه
+      وتشخيص مشكلات الاتصال.
+    </p>
+
+    <p>10 دروس تعليمية · اختبارات تفاعلية · درجة النجاح 80%</p>
+
+    <div class="progress-panel">
+      <div class="progress-top">
+        <strong>تقدمك في المسار</strong>
+        <strong id="progress-percent">0%</strong>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <p id="progress-count">0 من 10 دروس مجتازة</p>
+      <p style="font-size:13px;color:#a9c7dc">
+        يتم حفظ تقدمك في هذا المتصفح حتى بعد إغلاق الصفحة.
+      </p>
+    </div>
+  </section>
+
+  <h2 class="section-title">📚 دروس المسار</h2>
+
+  <section class="lessons">
+
+    <a class="lesson-card" data-lock="1" href="network-lesson.html">
+      <small>الدرس الأول</small>
+      <h3>مقدمة الشبكات</h3>
+      <p>مفهوم الشبكات، أنواعها، والأجهزة المستخدمة فيها.</p>
+      <span class="lesson-status">ابدأ الدرس ←</span>
+    </a>
+
+    <a class="lesson-card" data-lock="2" href="network-lesson-2.html">
+      <small>الدرس الثاني</small>
+      <h3>عناوين IP</h3>
+      <p>عناوين IPv4 والعناوين الخاصة وأساسيات تقسيم الشبكات.</p>
+      <span class="lesson-status">ابدأ الدرس ←</span>
+    </a>
+
+    <a class="lesson-card" data-lock="3" href="network-lesson-3.html">
+      <small>الدرس الثالث</small>
+      <h3>نظام DNS</h3>
+      <p>كيف تتحول أسماء المواقع إلى عناوين IP.</p>
+      <span class="lesson-status">ابدأ الدرس ←</span>
+    </a>
+
+    <a class="lesson-card" data-lock="4" href="network-lesson-4.html">
+      <small>الدرس الرابع</small>
+      <h3>بروتوكولات TCP وUDP</h3>
+      <p>فهم نقل البيانات والمنافذ والاتصال الموثوق.</p>
+      <span class="lesson-status">ابدأ الدرس ←</span>
+    </a>
+
+    <a class="lesson-card" data-lock="5" href="network-lesson-5.html">
+      <small>الدرس الخامس</small>
+      <h3>بروتوكول DHCP</h3>
+      <p>التوزيع التلقائي لعناوين الشبكة.</p>
+      <span class="lesson-status">ابدأ الدرس ←</span>
+    </a>
+
+    <a class="lesson-card" data-lock="6" href="network-lesson-6.html">
+      <small>الدرس السادس</small>
+      <h3>نموذج OSI وTCP/IP</h3>
+      <p>طبقات الشبكات وكيفية انتقال البيانات بينها.</p>
+      <span class="lesson-status">ابدأ الدرس ←</span>
+    </a>
+
+    <div class="lesson-card coming-soon">
+      <small>الدرس السابع</small>
+      <h3>التوجيه Routing</h3>
+      <p>كيف تختار حزم البيانات طريقها بين الشبكات.</p>
+      <span class="lesson-status">قريبًا</span>
+    </div>
+
+    <div class="lesson-card coming-soon">
+      <small>الدرس الثامن</small>
+      <h3>التبديل Switching وVLAN</h3>
+      <p>كيف تعمل المحولات وتقسيم الشبكات المحلية.</p>
+      <span class="lesson-status">قريبًا</span>
+    </div>
+
+    <div class="lesson-card coming-soon">
+      <small>الدرس التاسع</small>
+      <h3>أمن الشبكات الأساسي</h3>
+      <p>الجدران النارية والمنافذ وأساسيات حماية الشبكات.</p>
+      <span class="lesson-status">قريبًا</span>
+    </div>
+
+    <div class="lesson-card coming-soon">
+      <small>الدرس العاشر</small>
+      <h3>تشخيص مشكلات الشبكات</h3>
+      <p>استخدام Ping وTraceroute وأدوات الفحص الأساسية.</p>
+      <span class="lesson-status">قريبًا</span>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  © 2026 Dr.K | CyberArab Academy · جميع الحقوق محفوظة
+</footer>
+
+<script src="academy.js" defer></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const totalLessons = 10;
+    let completed = 0;
+
+    for (let i = 1; i <= totalLessons; i++) {
+      const saved = localStorage.getItem(
+        "cyberarab_lesson" + i + "_score"
+      );
+
+      if (saved !== null && Number(saved) >= 16) {
+        completed++;
+      }
+    }
+
+    const percentage = Math.round(
+      (completed / totalLessons) * 100
+    );
+
+    document.getElementById("progress-count").textContent =
+      completed + " من " + totalLessons + " دروس مجتازة";
+
+    document.getElementById("progress-percent").textContent =
+      percentage + "%";
+
+    document.getElementById("progress-fill").style.width =
+      percentage + "%";
+  });
+</script>
+
+</body>
+</html>
