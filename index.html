@@ -2,89 +2,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CyberArab Academy | أكاديمية سايبر عرب</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #020b17;
-      color: white;
-      font-family: Tahoma, Arial, sans-serif;
-    }
-    .hero {
-      position: relative;
-      width: 100%;
-      max-width: 1648px;
-      margin: auto;
-    }
-    .hero img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    .hotspot {
-      position: absolute;
-      display: block;
-      cursor: pointer;
-      border-radius: 12px;
-    }
-    .hotspot:focus-visible {
-      outline: 3px solid #00d9ff;
-    }
-    .start {
-      left: 77.8%;
-      top: 42.7%;
-      width: 16.8%;
-      height: 7.1%;
-    }
-    .courses {
-      left: 80%;
-      top: 2%;
-      width: 9%;
-      height: 9%;
-    }
-    .paths {
-      left: 68%;
-      top: 2%;
-      width: 11%;
-      height: 9%;
-    }
-    .library {
-      left: 60%;
-      top: 2%;
-      width: 8%;
-      height: 9%;
-    }
-    .content {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 24px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .card {
-      background: #0b1d33;
-      border: 1px solid #32618a;
-      border-radius: 16px;
-      padding: 24px;
-    }
-    button {
-      background: #0068cb;
-      color: white;
-      border: 1px solid #00cfff;
-      padding: 12px 20px;
-      border-radius: 9px;
-      cursor: pointer;
-    }
-    @media (max-width: 700px) {
-      .cards { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
 <body>
   <main>
@@ -124,27 +45,6 @@
     </section>
   </main>
 
-  <script>
-    const courses = {
-      network: "أساسيات الشبكات",
-      python: "بايثون للمبتدئين",
-      cyber: "أساسيات الأمن السيبراني"
-    };
-
-    function openCourse(id) {
-      const container = document.getElementById("lessons");
-      container.replaceChildren();
-      const title = document.createElement("h2");
-      title.textContent = courses[id];
-      container.appendChild(title);
-
-      for (let i = 1; i <= 10; i++) {
-        const p = document.createElement("p");
-        p.textContent = `الدرس ${i} — سيتم إضافة المحتوى والاختبار`;
-        container.appendChild(p);
-      }
-      container.scrollIntoView({ behavior: "smooth" });
-    }
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
