@@ -23,7 +23,8 @@
     "network-lesson-3.html",
     "network-lesson-4.html",
     "network-lesson-5.html",
-    "network-lesson-6.html"
+     "network-lesson-6.html",
+    "network-lesson-7.html"
   ];
 
   const PASS_PERCENT = 80;
