@@ -214,3 +214,56 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+.hero {
+  position: relative;
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hotspot {
+  position: absolute;
+  display: block;
+  z-index: 10;
+  cursor: pointer;
+  background: transparent;
+}
+
+.hotspot:hover {
+  background: rgba(0, 200, 255, 0.12);
+  outline: 2px solid #00c8ff;
+  border-radius: 8px;
+}
+
+/* أزرار الصورة - مواقع مبدئية */
+.hotspot.start {
+  top: 72%;
+  right: 7%;
+  width: 22%;
+  height: 9%;
+}
+
+.hotspot.courses {
+  top: 8%;
+  right: 16%;
+  width: 12%;
+  height: 8%;
+}
+
+.hotspot.paths {
+  top: 8%;
+  right: 29%;
+  width: 15%;
+  height: 8%;
+}
+
+.hotspot.library {
+  top: 8%;
+  right: 44%;
+  width: 12%;
+  height: 8%;
+}
