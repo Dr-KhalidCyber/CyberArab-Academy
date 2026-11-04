@@ -2,49 +2,112 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
   <title>CyberArab Academy | أكاديمية سايبر عرب</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <main>
-    <section class="hero" aria-label="واجهة أكاديمية سايبر عرب">
-      <img src="academy-design.png.png" alt="CyberArab Academy">
-      <a class="hotspot start" href="#courses" aria-label="ابدأ التعلم الآن"></a>
-      <a class="hotspot courses" href="#courses" aria-label="الدورات"></a>
-      <a class="hotspot paths" href="#courses" aria-label="مساري التعليمي"></a>
-      <a class="hotspot library" href="#library" aria-label="المكتبة"></a>
-    </section>
 
-    <section class="content" id="courses">
-      <h1>المسارات التعليمية</h1>
-      <div class="cards">
-        <article class="card">
-          <h2>أساسيات الشبكات</h2>
-          <p>تعلم الشبكات والبروتوكولات وعناوين IP.</p>
-          <button onclick="openCourse('network')">عرض المسار</button>
-        </article>
-        <article class="card">
-          <h2>بايثون للمبتدئين</h2>
-          <p>تعلم البرمجة بلغة Python خطوة بخطوة.</p>
-          <button onclick="openCourse('python')">عرض المسار</button>
-        </article>
-        <article class="card">
-          <h2>أساسيات الأمن السيبراني</h2>
-          <p>تعلم حماية الأنظمة والشبكات من التهديدات.</p>
-          <button onclick="openCourse('cyber')">عرض المسار</button>
-        </article>
-      </div>
-      <div id="lessons" aria-live="polite"></div>
-    </section>
+<main>
 
-    <section class="content" id="library">
-      <h2>المكتبة التعليمية</h2>
-      <p>سيتم ربط المكتبة بالمراجع التعليمية.</p>
-    </section>
-  </main>
+  <!-- الواجهة الرئيسية -->
+  <section class="hero" id="home"
+           aria-label="واجهة أكاديمية سايبر عرب">
+
+    <img src="academy-design.png.png"
+         alt="CyberArab Academy"
+         width="1648">
+
+    <!-- أزرار الواجهة -->
+    <a class="hotspot start"
+       href="#courses"
+       aria-label="ابدأ التعلم الآن"
+       title="ابدأ التعلم الآن"></a>
+
+    <a class="hotspot courses"
+       href="#courses"
+       aria-label="الدورات"
+       title="الدورات"></a>
+
+    <a class="hotspot paths"
+       href="#courses"
+       aria-label="المسارات التعليمية"
+       title="المسارات التعليمية"></a>
+
+    <a class="hotspot library"
+       href="#library"
+       aria-label="المكتبة"
+       title="المكتبة"></a>
+
+  </section>
+
+  <!-- المسارات التعليمية -->
+  <section class="content" id="courses">
+
+    <h1>المسارات التعليمية</h1>
+
+    <div class="cards">
+
+      <article class="card">
+        <h2>أساسيات الشبكات</h2>
+        <p>
+          تعلم الشبكات والبروتوكولات
+          وعناوين IP خطوة بخطوة.
+        </p>
+        <button type="button"
+                onclick="openCourse('network')">
+          عرض المسار
+        </button>
+      </article>
+
+      <article class="card">
+        <h2>بايثون للمبتدئين</h2>
+        <p>
+          تعلم البرمجة بلغة Python
+          من الصفر حتى التطبيقات العملية.
+        </p>
+        <button type="button"
+                onclick="openCourse('python')">
+          عرض المسار
+        </button>
+      </article>
+
+      <article class="card">
+        <h2>أساسيات الأمن السيبراني</h2>
+        <p>
+          تعلم حماية الأنظمة والشبكات
+          والتعرف على التهديدات الأمنية.
+        </p>
+        <button type="button"
+                onclick="openCourse('cyber')">
+          عرض المسار
+        </button>
+      </article>
+
+    </div>
+
+    <!-- عرض الدروس -->
+    <div id="lessons" aria-live="polite"></div>
+
+  </section>
+
+  <!-- المكتبة -->
+  <section class="content" id="library">
+    <h2>المكتبة التعليمية</h2>
+    <p>
+      المراجع والمصادر التعليمية
+      الخاصة بالأمن السيبراني.
+    </p>
+  </section>
+
+</main>
 
 <script src="script.js"></script>
+
 </body>
 </html>
